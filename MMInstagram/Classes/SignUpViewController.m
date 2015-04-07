@@ -41,6 +41,7 @@
         newUser.username = username;
         newUser.password = password;
         newUser.email = email;
+        newUser[@"name"] = name;
 
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error) {
