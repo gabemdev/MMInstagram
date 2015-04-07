@@ -34,6 +34,15 @@
 		6DA4277E1AD32ADE001390FB /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4277D1AD32ADE001390FB /* MainViewController.m */; };
 		6DA427811AD32AF4001390FB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA427801AD32AF4001390FB /* LoginViewController.m */; };
 		6DA427841AD32B11001390FB /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA427831AD32B11001390FB /* SignUpViewController.m */; };
+		6DCCD4F31AD37A630062834B /* FeedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD4F21AD37A630062834B /* FeedCollectionViewCell.m */; };
+		6DCCD4F61AD38C400062834B /* MMCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD4F51AD38C400062834B /* MMCropView.m */; };
+		6DCCD5041AD398730062834B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5031AD398730062834B /* User.m */; };
+		6DCCD5071AD3989E0062834B /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5061AD3989E0062834B /* Comment.m */; };
+		6DCCD50A1AD399140062834B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5091AD399140062834B /* Photo.m */; };
+		6DCCD50D1AD3B8E00062834B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD50C1AD3B8E00062834B /* SearchViewController.m */; };
+		6DCCD5101AD3B9010062834B /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD50F1AD3B9010062834B /* CameraViewController.m */; };
+		6DCCD5131AD3B9180062834B /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5121AD3B9180062834B /* ActivityViewController.m */; };
+		6DCCD5161AD3B92C0062834B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5151AD3B92C0062834B /* ProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +92,24 @@
 		6DA427801AD32AF4001390FB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Classes/LoginViewController.m; sourceTree = "<group>"; };
 		6DA427821AD32B11001390FB /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = Classes/SignUpViewController.h; sourceTree = "<group>"; };
 		6DA427831AD32B11001390FB /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = Classes/SignUpViewController.m; sourceTree = "<group>"; };
+		6DCCD4F11AD37A630062834B /* FeedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedCollectionViewCell.h; path = Custom/FeedCollectionViewCell.h; sourceTree = "<group>"; };
+		6DCCD4F21AD37A630062834B /* FeedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedCollectionViewCell.m; path = Custom/FeedCollectionViewCell.m; sourceTree = "<group>"; };
+		6DCCD4F41AD38C400062834B /* MMCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMCropView.h; path = Custom/MMCropView.h; sourceTree = "<group>"; };
+		6DCCD4F51AD38C400062834B /* MMCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMCropView.m; path = Custom/MMCropView.m; sourceTree = "<group>"; };
+		6DCCD5021AD398730062834B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
+		6DCCD5031AD398730062834B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Model/User.m; sourceTree = "<group>"; };
+		6DCCD5051AD3989E0062834B /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = Model/Comment.h; sourceTree = "<group>"; };
+		6DCCD5061AD3989E0062834B /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = Model/Comment.m; sourceTree = "<group>"; };
+		6DCCD5081AD399140062834B /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = Model/Photo.h; sourceTree = "<group>"; };
+		6DCCD5091AD399140062834B /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = Model/Photo.m; sourceTree = "<group>"; };
+		6DCCD50B1AD3B8E00062834B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = Classes/SearchViewController.h; sourceTree = "<group>"; };
+		6DCCD50C1AD3B8E00062834B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = Classes/SearchViewController.m; sourceTree = "<group>"; };
+		6DCCD50E1AD3B9010062834B /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = Classes/CameraViewController.h; sourceTree = "<group>"; };
+		6DCCD50F1AD3B9010062834B /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = Classes/CameraViewController.m; sourceTree = "<group>"; };
+		6DCCD5111AD3B9180062834B /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityViewController.h; path = Classes/ActivityViewController.h; sourceTree = "<group>"; };
+		6DCCD5121AD3B9180062834B /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewController.m; path = Classes/ActivityViewController.m; sourceTree = "<group>"; };
+		6DCCD5141AD3B92C0062834B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = Classes/ProfileViewController.h; sourceTree = "<group>"; };
+		6DCCD5151AD3B92C0062834B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = Classes/ProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,8 +171,10 @@
 			isa = PBXGroup;
 			children = (
 				6DA427331AD31BB5001390FB /* Main.storyboard */,
+				6DCCD4F01AD37A4A0062834B /* Custom */,
 				6DA427501AD325AD001390FB /* Model */,
 				6DA4274F1AD325A9001390FB /* Classes */,
+				6DCCD5011AD397BD0062834B /* Categories */,
 				6DA427261AD31BB4001390FB /* Supporting Files */,
 			);
 			path = MMInstagram;
@@ -190,6 +219,14 @@
 				6DA427801AD32AF4001390FB /* LoginViewController.m */,
 				6DA427821AD32B11001390FB /* SignUpViewController.h */,
 				6DA427831AD32B11001390FB /* SignUpViewController.m */,
+				6DCCD50B1AD3B8E00062834B /* SearchViewController.h */,
+				6DCCD50C1AD3B8E00062834B /* SearchViewController.m */,
+				6DCCD50E1AD3B9010062834B /* CameraViewController.h */,
+				6DCCD50F1AD3B9010062834B /* CameraViewController.m */,
+				6DCCD5111AD3B9180062834B /* ActivityViewController.h */,
+				6DCCD5121AD3B9180062834B /* ActivityViewController.m */,
+				6DCCD5141AD3B92C0062834B /* ProfileViewController.h */,
+				6DCCD5151AD3B92C0062834B /* ProfileViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -198,6 +235,12 @@
 			isa = PBXGroup;
 			children = (
 				6DA4272D1AD31BB5001390FB /* MMInstagram.xcdatamodeld */,
+				6DCCD5021AD398730062834B /* User.h */,
+				6DCCD5031AD398730062834B /* User.m */,
+				6DCCD5051AD3989E0062834B /* Comment.h */,
+				6DCCD5061AD3989E0062834B /* Comment.m */,
+				6DCCD5081AD399140062834B /* Photo.h */,
+				6DCCD5091AD399140062834B /* Photo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -233,6 +276,24 @@
 			);
 			name = "Other Resources";
 			path = MMInstagram;
+			sourceTree = "<group>";
+		};
+		6DCCD4F01AD37A4A0062834B /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				6DCCD4F11AD37A630062834B /* FeedCollectionViewCell.h */,
+				6DCCD4F21AD37A630062834B /* FeedCollectionViewCell.m */,
+				6DCCD4F41AD38C400062834B /* MMCropView.h */,
+				6DCCD4F51AD38C400062834B /* MMCropView.m */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
+		6DCCD5011AD397BD0062834B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,11 +396,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DCCD4F61AD38C400062834B /* MMCropView.m in Sources */,
 				6DA4272F1AD31BB5001390FB /* MMInstagram.xcdatamodeld in Sources */,
+				6DCCD5041AD398730062834B /* User.m in Sources */,
+				6DCCD5071AD3989E0062834B /* Comment.m in Sources */,
+				6DCCD5161AD3B92C0062834B /* ProfileViewController.m in Sources */,
 				6DA427291AD31BB5001390FB /* main.m in Sources */,
+				6DCCD5131AD3B9180062834B /* ActivityViewController.m in Sources */,
 				6DA427841AD32B11001390FB /* SignUpViewController.m in Sources */,
+				6DCCD4F31AD37A630062834B /* FeedCollectionViewCell.m in Sources */,
 				6DA427581AD3262A001390FB /* AppDelegate.m in Sources */,
+				6DCCD50A1AD399140062834B /* Photo.m in Sources */,
+				6DCCD5101AD3B9010062834B /* CameraViewController.m in Sources */,
 				6DA4277E1AD32ADE001390FB /* MainViewController.m in Sources */,
+				6DCCD50D1AD3B8E00062834B /* SearchViewController.m in Sources */,
 				6DA427811AD32AF4001390FB /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -543,6 +613,7 @@
 				6DA4274B1AD31BB5001390FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6DA4274C1AD31BB5001390FB /* Build configuration list for PBXNativeTarget "MMInstagramTests" */ = {
 			isa = XCConfigurationList;
@@ -551,6 +622,7 @@
 				6DA4274E1AD31BB5001390FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -60,10 +60,11 @@
 
 #pragma mark - Appearance
 - (void)applyStyleSheet {
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0.92 green:0.38 blue:0.38 alpha:1.00]}];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.92 green:0.38 blue:0.38 alpha:1.00]];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],
                                                         NSFontAttributeName: [UIFont fontWithName:@"Avenir-Medium" size:14]} forState:UIControlStateNormal];
 
@@ -76,21 +77,27 @@
     UITabBarItem *activity = [tabBar.items objectAtIndex:3];
     UITabBarItem *profile = [tabBar.items objectAtIndex:4];
 
+    UIEdgeInsets insets = UIEdgeInsetsMake(7.0f, 0.0f, -7.0f, 0.0f);
+
     feed.selectedImage = [UIImage imageNamed:@"tabbar-home-icon-highlighted"];
     feed.image = [UIImage imageNamed:@"tabbar-home-icon"];
+    feed.imageInsets = insets;
 
     search.selectedImage = [UIImage imageNamed:@"tabbar-search-icon-highlighted"];
     search.image = [UIImage imageNamed:@"tabbar-search-icon"];
+    search.imageInsets = insets;
 
     camera.selectedImage = [UIImage imageNamed:@"more-addtofancy-camera-active"];
     camera.image = [UIImage imageNamed:@"more-addtofancy-camera"];
+    camera.imageInsets = insets;
 
     activity.selectedImage = [UIImage imageNamed:@"tabbar-activity-icon-highlighted"];
     activity.image = [UIImage imageNamed:@"tabbar-activity-icon"];
+    activity.imageInsets = insets;
 
     profile.selectedImage = [UIImage imageNamed:@"tabbar-profile-icon-highlighted"];
     profile.image = [UIImage imageNamed:@"tabbar-profile-icon"];
-
+    profile.imageInsets = insets;
 }
 
 #pragma mark - Core Data stack

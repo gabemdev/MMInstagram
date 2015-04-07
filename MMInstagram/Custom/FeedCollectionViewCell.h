@@ -1,5 +1,5 @@
 //
-//  SignUpViewController.h
+//  FeedCollectionViewCell.h
 //  MMInstagram
 //
 //  Created by Rockstar. on 4/6/15.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignUpViewController : UIViewController
-
+@interface FeedCollectionViewCell : UICollectionViewCell
 
 @end

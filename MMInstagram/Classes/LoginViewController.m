@@ -7,8 +7,13 @@
 //
 
 #import "LoginViewController.h"
+#import "MainViewController.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (nonatomic, assign) id currentResponder;
 
 @end
 
@@ -16,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.loginButton.layer.cornerRadius = 3;
 
 }
 
@@ -25,7 +31,16 @@
 }
 
 
+#pragma mark - TextField
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.currentResponder = textField;
+}
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.currentResponder = nil;
+}
+
+#pragma mark - Actions
 - (IBAction)onLoginButtonTapped:(id)sender {
 
     NSString *username = [self.usernameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -49,4 +64,5 @@
         }];
     }
 }
+
 @end

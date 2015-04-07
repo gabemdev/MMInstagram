@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 
 @interface MainViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 
 @end
 
@@ -16,13 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        NSLog(@"Current user: %@", currentUser.username);
-    } else {
-        [self performSegueWithIdentifier:@"showLogin" sender:self];
-    }
+    [self checkUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -32,10 +27,33 @@
 }
 
 
+
+
+#pragma mark - Accessor Methods
+
+
+
+#pragma mark - Helper Methods
+- (void)checkUser {
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        NSLog(@"Current user: %@", currentUser.username);
+        
+    } else {
+        [self performSegueWithIdentifier:@"showLogin" sender:self];
+    }
+}
+
+#pragma mark - Actions
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showLogin"]) {
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     }
+}
+- (IBAction)onLogoutButtonTapped:(id)sender {
+    [PFUser logOut];
+    [self performSegueWithIdentifier:@"showLogin" sender:self];
+
 }
 
 @end
