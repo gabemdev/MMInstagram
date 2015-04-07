@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26AC06941AD3626F00D39242 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC06931AD3626F00D39242 /* FeedViewController.m */; };
+		26AC06971AD366F700D39242 /* InstagramPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC06961AD366F700D39242 /* InstagramPost.m */; };
 		6DA427291AD31BB5001390FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA427281AD31BB5001390FB /* main.m */; };
 		6DA4272C1AD31BB5001390FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4272B1AD31BB5001390FB /* AppDelegate.m */; };
 		6DA4272F1AD31BB5001390FB /* MMInstagram.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4272D1AD31BB5001390FB /* MMInstagram.xcdatamodeld */; };
@@ -28,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26AC06921AD3626F00D39242 /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		26AC06931AD3626F00D39242 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		26AC06951AD366F700D39242 /* InstagramPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramPost.h; sourceTree = "<group>"; };
+		26AC06961AD366F700D39242 /* InstagramPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramPost.m; sourceTree = "<group>"; };
 		6DA427231AD31BB4001390FB /* MMInstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMInstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA427271AD31BB5001390FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DA427281AD31BB5001390FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -88,6 +94,8 @@
 				6DA427301AD31BB5001390FB /* ViewController.h */,
 				6DA427311AD31BB5001390FB /* ViewController.m */,
 				6DA427331AD31BB5001390FB /* Main.storyboard */,
+				26AC06921AD3626F00D39242 /* FeedViewController.h */,
+				26AC06931AD3626F00D39242 /* FeedViewController.m */,
 				6DA427361AD31BB5001390FB /* Images.xcassets */,
 				6DA427381AD31BB5001390FB /* LaunchScreen.xib */,
 				6DA4272D1AD31BB5001390FB /* MMInstagram.xcdatamodeld */,
@@ -99,6 +107,8 @@
 		6DA427261AD31BB4001390FB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				26AC06951AD366F700D39242 /* InstagramPost.h */,
+				26AC06961AD366F700D39242 /* InstagramPost.m */,
 				6DA427271AD31BB5001390FB /* Info.plist */,
 				6DA427281AD31BB5001390FB /* main.m */,
 			);
@@ -223,8 +233,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DA4272C1AD31BB5001390FB /* AppDelegate.m in Sources */,
+				26AC06941AD3626F00D39242 /* FeedViewController.m in Sources */,
 				6DA4272F1AD31BB5001390FB /* MMInstagram.xcdatamodeld in Sources */,
 				6DA427321AD31BB5001390FB /* ViewController.m in Sources */,
+				26AC06971AD366F700D39242 /* InstagramPost.m in Sources */,
 				6DA427291AD31BB5001390FB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +428,7 @@
 				6DA4274B1AD31BB5001390FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6DA4274C1AD31BB5001390FB /* Build configuration list for PBXNativeTarget "MMInstagramTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +437,7 @@
 				6DA4274E1AD31BB5001390FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
