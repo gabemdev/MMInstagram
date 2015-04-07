@@ -35,9 +35,9 @@
         if (!connectionError) {
 
             self.dataArray = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]objectForKey:@"data"];
-            NSLog(@"%@", self.dataArray);//this works but cannot get a piece of data to print out by itself
+            //NSLog(@"%@", self.dataArray);//this works but cannot get a piece of data to print out by itself
 
-            NSDictionary *item = [self.dataArray firstObject];
+            NSDictionary *item = [self.dataArray objectAtIndex:0];
             NSDictionary *caption = item[@"caption"];
             NSLog(@"%@", caption[@"text"]);
 //            NSArray *dataArray = [InstagramPost postFromArray:jsonArray];
@@ -61,16 +61,15 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell"];
 
-    NSDictionary *item = [self.dataArray firstObject];
-            NSLog(@"%@", item);
+    //NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
+            //NSLog(@"%@", item);
     //NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
     //NSLog(@"%@", item);
     NSDictionary *caption = item[@"caption"];
     NSDictionary *from = caption[@"caption"];
 
     //InstagramPost *name =
-    //cell.textLabel.text = from[@"username"];
-    NSLog(@"%@", from[@"username"]);
+    cell.textLabel.text = from[@"username"];
     return cell;
 }
 
