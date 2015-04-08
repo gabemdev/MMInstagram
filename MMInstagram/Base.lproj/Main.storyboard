@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -455,13 +455,86 @@
                     <view key="view" contentMode="scaleToFill" id="X4w-by-ezU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-camera" translatesAutoresizingMaskIntoConstraints="NO" id="uLg-XI-NoY">
+                                <rect key="frame" x="254" y="386" width="93" height="93"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="uLg-XI-NoY"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" id="cag-EG-ytM"/>
                     <navigationItem key="navigationItem" title="Camera" id="7ng-Ns-VDD"/>
+                    <connections>
+                        <segue destination="mg3-tc-mid" kind="show" identifier="PostToVC" id="ThV-qu-CaN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEK-ZW-Ns4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1440" y="1319"/>
+            <point key="canvasLocation" x="1440" y="1287"/>
+        </scene>
+        <!--Share to-->
+        <scene sceneID="Mnt-Jp-hun">
+            <objects>
+                <viewController title="Share to" id="mg3-tc-mid" customClass="PostViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8RT-cn-4jt"/>
+                        <viewControllerLayoutGuide type="bottom" id="R8b-er-E0M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cRI-xv-vDd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Q2-cd-DQk">
+                                <rect key="frame" x="8" y="8" width="136" height="136"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Comment..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvP-Mi-qZo">
+                                <rect key="frame" x="152" y="8" width="432" height="136"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ja9-CP-Fpc">
+                                <rect key="frame" x="8" y="160" width="576" height="48"/>
+                                <color key="backgroundColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPostButtonPressed:" destination="mg3-tc-mid" eventType="touchUpInside" id="pe4-UX-erO"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7v-r3-p5d">
+                                <rect key="frame" x="165" y="12" width="419" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ppv-a0-WXF">
+                                <rect key="frame" x="162" y="8" width="422" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="C7v-r3-p5d"/>
+                                <exclude reference="Ppv-a0-WXF"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="commentTextField" destination="nvP-Mi-qZo" id="H2P-N1-xiq"/>
+                        <outlet property="imageView" destination="3Q2-cd-DQk" id="Ldq-5e-oFS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7pB-hq-sMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1440" y="1995"/>
         </scene>
         <!--Activity-->
         <scene sceneID="hcw-ze-m07">
@@ -644,6 +717,9 @@
                                 <state key="normal" title="Edit Profile">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="X92-VL-uD8" kind="presentation" id="Bys-Qy-TMP"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNH-3p-hsX">
                                 <rect key="frame" x="390" y="8" width="32" height="21"/>
@@ -732,10 +808,71 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="MRV-BY-fth"/>
+                    <connections>
+                        <outlet property="profileImageView" destination="Q5q-K7-2My" id="TaI-VF-rjr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xbe-xy-VeG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2840" y="1319"/>
+        </scene>
+        <!--Edit-->
+        <scene sceneID="uXp-eL-5o9">
+            <objects>
+                <viewController title="Edit" id="X92-VL-uD8" customClass="EditProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5bB-Lt-eKh"/>
+                        <viewControllerLayoutGuide type="bottom" id="tZf-Dh-JWk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WBj-dH-CfE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uzR-fP-jH4">
+                                <rect key="frame" x="95" y="54" width="185" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Website" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W5d-3T-ord">
+                                <rect key="frame" x="95" y="175" width="185" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Bio" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j8d-vK-jOd">
+                                <rect key="frame" x="95" y="238" width="185" height="90"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dIm-wm-dMw">
+                                <rect key="frame" x="95" y="114" width="185" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Phone" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dib-JX-15Y">
+                                <rect key="frame" x="95" y="481" width="185" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Js-0x-moy">
+                                <rect key="frame" x="302" y="54" width="106" height="98"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bioTextField" destination="Dib-JX-15Y" id="95B-Ms-2e5"/>
+                        <outlet property="nameTextField" destination="uzR-fP-jH4" id="NEC-9q-Qzo"/>
+                        <outlet property="phoneTextField" destination="Dib-JX-15Y" id="1IV-Ku-g41"/>
+                        <outlet property="usernameTextField" destination="dIm-wm-dMw" id="D2P-NZ-tBi"/>
+                        <outlet property="websiteTextField" destination="W5d-3T-ord" id="DNx-tt-Efg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MF7-s2-h9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3557" y="1319"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="lTB-yN-bDQ">

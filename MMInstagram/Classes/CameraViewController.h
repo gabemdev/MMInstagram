@@ -10,4 +10,9 @@
 
 @interface CameraViewController : UIViewController
 
+
+- (void)showCameraController;
+
+
+
 @end
