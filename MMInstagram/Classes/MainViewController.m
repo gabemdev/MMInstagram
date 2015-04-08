@@ -60,6 +60,8 @@
 
     cell.likesLabel.text = [NSString stringWithFormat:@"%lu likes", (unsigned long)self.likes.count];
     [cell.commentButton addTarget:self action:@selector(commentButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+    NSLog(@"New CHanges");
     cell.commentButton.tag = indexPath.section;
 
     cell.likeButton.tag = indexPath.section;
