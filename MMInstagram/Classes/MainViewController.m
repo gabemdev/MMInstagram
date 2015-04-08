@@ -24,6 +24,9 @@
     [super viewDidLoad];
     [self checkUser];
     self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor colorWithRed:0.92 green:0.38 blue:0.38 alpha:1.00];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.tableView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self action:@selector(retrievePhotos) forControlEvents:UIControlEventValueChanged];
 }
 
@@ -60,7 +63,7 @@
     cell.commentButton.tag = indexPath.section;
 
     cell.likeButton.tag = indexPath.section;
-    cell.commentLabel.text = [NSString stringWithFormat:@"%@", [photo objectForKey:@"PhotoDescription"]];
+    cell.commentLabel.text = [NSString stringWithFormat:@"#%@", [photo objectForKey:@"PhotoDescription"]];
     return cell;
 }
 
@@ -102,7 +105,7 @@
 - (void)checkUser {
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
-        NSLog(@"Current user: %@", currentUser.username);
+        NSLog(@"Current user: %@", currentUser[@"name"]);
         
     } else {
         [self performSegueWithIdentifier:@"showLogin" sender:self];

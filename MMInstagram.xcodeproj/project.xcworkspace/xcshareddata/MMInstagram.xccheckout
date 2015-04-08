@@ -5,15 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>E4228812-C586-4928-BA64-B44635631EDB</string>
+	<string>A808A285-6E65-49C8-910D-E157215DC300</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MMInstagram</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>72AE4B088C635D14272B5F894BC9C7D36385EBB8</key>
-		<string>https://github.com/gabemdev/MMInstagram.git</string>
-		<key>87CB83D14C9E1B715B92B4A5D673B855BAC9EEE6</key>
-		<string>https://github.com/AndrewDolly/git_practice.git</string>
+		<string>github.com:gabemdev/MMInstagram.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MMInstagram.xcodeproj</string>
@@ -21,25 +19,15 @@
 	<dict>
 		<key>72AE4B088C635D14272B5F894BC9C7D36385EBB8</key>
 		<string>../..</string>
-		<key>87CB83D14C9E1B715B92B4A5D673B855BAC9EEE6</key>
-		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/gabemdev/MMInstagram.git</string>
+	<string>github.com:gabemdev/MMInstagram.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
 	<string>72AE4B088C635D14272B5F894BC9C7D36385EBB8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>87CB83D14C9E1B715B92B4A5D673B855BAC9EEE6</string>
-			<key>IDESourceControlWCCName</key>
-			<string></string>
-		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

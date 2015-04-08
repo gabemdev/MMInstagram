@@ -226,6 +226,7 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
                 NSData *imageData = UIImageJPEGRepresentation(self.profileImageView.image, 0.05f);
                 [self uploadImage:imageData];
+                [self.navigationController popToRootViewControllerAnimated:YES];
 
             }
         }];

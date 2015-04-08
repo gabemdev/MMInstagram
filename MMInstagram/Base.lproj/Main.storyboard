@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -612,7 +612,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCh-xu-vqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710" y="2051"/>
+            <point key="canvasLocation" x="522" y="2051"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4E6-nN-GjJ">
@@ -1060,7 +1060,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MF7-s2-h9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3557" y="1319"/>
+            <point key="canvasLocation" x="3538" y="1209"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="lTB-yN-bDQ">
@@ -1097,7 +1097,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxO-Va-cmH">
                                 <rect key="frame" x="100" y="70" width="24" height="22"/>
-                                <state key="normal" image="more-icon-groupgift">
+                                <state key="normal" image="share">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -1118,7 +1118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uf6-Eu-rrW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3652" y="1981"/>
+            <point key="canvasLocation" x="2840" y="2005"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Rf4-Ou-ovh">
@@ -1136,7 +1136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yEl-YX-y8d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4335" y="1981"/>
+            <point key="canvasLocation" x="3483" y="2005"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9uc-22-1VX">
@@ -1167,7 +1167,7 @@
         <image name="email_inactive" width="25" height="18"/>
         <image name="feed_like_icon" width="24" height="21"/>
         <image name="feedtoggle-map-icon" width="20" height="24"/>
-        <image name="more-icon-groupgift" width="22" height="22"/>
+        <image name="share" width="16" height="18"/>
         <image name="signup_camera" width="85" height="85"/>
         <image name="x" width="15" height="15"/>
     </resources>
