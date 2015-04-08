@@ -7,9 +7,14 @@
 //
 
 #import "MainViewController.h"
+#import "PhotoDetailTableViewCell.h"
 
-@interface MainViewController ()
+@interface MainViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) UIRefreshControl *refreshControl;
+@property NSArray *photos;
+@property NSMutableArray *likes;
 
 @end
 
@@ -18,20 +23,80 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self checkUser];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(retrievePhotos) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
     [self.navigationController.navigationBar setHidden:NO];
+    [self retrievePhotos];
 }
 
+#pragma mark - UITableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PhotoDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    //Image
+    PFObject *photo = self.photos[indexPath.section];
+    PFFile *file = [photo objectForKey:@"PhotoZ"];
+    [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            cell.detailImageView.image = [UIImage imageWithData:data];
+        }
+    }];
 
 
+    NSString *activity = [photo objectForKey:@"PhotoActivityId"];
+    [self getLikeCountwithObject:activity];
+
+    cell.likesLabel.text = [NSString stringWithFormat:@"%lu likes", (unsigned long)self.likes.count];
+    [cell.commentButton addTarget:self action:@selector(commentButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    cell.commentButton.tag = indexPath.section;
+
+    cell.likeButton.tag = indexPath.section;
+    cell.commentLabel.text = [NSString stringWithFormat:@"%@", [photo objectForKey:@"PhotoDescription"]];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 420;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.photos.count;
+}
 
 #pragma mark - Accessor Methods
+- (void)retrievePhotos {
+    PFQuery *query = [PFQuery queryWithClassName:@"Photo"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        } else {
+            self.photos = objects;
+            [self.tableView reloadData];
 
+        }
+        if ([self.refreshControl isRefreshing]) {
+            [self.refreshControl endRefreshing];
+        }
+    }];
+}
 
+- (void)getLikeCountwithObject:(NSString *)activity {
+    PFQuery *query = [PFQuery queryWithClassName:@"Like"];
+    [query whereKey:@"ActivityId" equalTo:activity];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.likes = objects.mutableCopy;
+    }];
+}
 
 #pragma mark - Helper Methods
 - (void)checkUser {
@@ -54,6 +119,26 @@
     [PFUser logOut];
     [self performSegueWithIdentifier:@"showLogin" sender:self];
 
+}
+
+- (IBAction)likeButtonTapped:(id)sender {
+    NSInteger section;
+    if (self.likes.count == 0) {
+        PFObject *photo = self.photos[section];
+        NSString *activityId = [photo objectForKey:@"PhotoActivityId"];
+        PFObject *like = [PFObject objectWithClassName:@"Like"];
+
+        [like setValue:[PFUser currentUser].objectId forKey:@"LikingUserId"];
+        [like setValue:activityId forKey:@"ActivityId"];
+        [like saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (error) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            } else {
+                [self.likes addObject:like];
+                [self.tableView reloadData];
+            }
+        }];
+    }
 }
 
 @end

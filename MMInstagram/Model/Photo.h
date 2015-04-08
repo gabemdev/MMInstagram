@@ -7,20 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
-@interface Photo : NSObject<NSCoding>
+@interface Photo : PFObject
 
-@property NSString *photosID;
-@property BOOL isFavorite;
-@property UIImage *image;
-@property CLLocationCoordinate2D coordinate;
-@property NSURL *imageURL;
-@property NSDate *imageData;
-@property NSString *user;
+@property NSString *caption;
+@property PFFile *imageFile;
+@property User *user;
+@property NSString *username;
+@property NSString *comment;
+@property PFRelation *userWhoLike;
+@property PFRelation *comments;
+@property PFRelation *hasthags;
 
-- (void)encodeWithCoder:(NSCoder *)aCoder;
-- (instancetype)initWithCoder:(NSCoder *)aDecoder;
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-- (UIImage *)favoriteIndicator;
+//+ (NSString *)parseClassName;
+//
+//- (void)savePhotoWithImage:(UIImage *)image caption:(NSString *)caption withUser:(User *)user withCompletion:(void(^)(NSError *error))complete;
+//- (UIImage *)getImage;
+//- (void)getImageWithCompletion:(void(^)(UIImage *image))completion;
 
 @end
