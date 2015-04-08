@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class User;
+@class Photo;
 @interface Comment : NSObject
 
 @property (nonatomic) NSString *commentID;
 @property (nonatomic) NSNumber *time;
 @property (nonatomic) NSString *commentString;
-@property (nonatomic) User *user;
+@property (nonatomic) Photo *photo;
 
 @end

@@ -43,6 +43,9 @@
 		6DCCD5131AD3B9180062834B /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5121AD3B9180062834B /* ActivityViewController.m */; };
 		6DCCD5161AD3B92C0062834B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5151AD3B92C0062834B /* ProfileViewController.m */; };
 		6DCCD54E1AD43D9D0062834B /* MMDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD54D1AD43D9D0062834B /* MMDefines.m */; };
+		6DCCD5511AD4AC090062834B /* SearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5501AD4AC090062834B /* SearchCollectionViewCell.m */; };
+		6DCCD5541AD4C7070062834B /* PhotoDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5531AD4C7070062834B /* PhotoDetailTableViewCell.m */; };
+		6DCCD5571AD4C7AB0062834B /* PhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5561AD4C7AB0062834B /* PhotoDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +115,12 @@
 		6DCCD5491AD43D450062834B /* MMInstagram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MMInstagram.h; path = MMInstagramKit/MMInstagram.h; sourceTree = "<group>"; };
 		6DCCD54C1AD43D9D0062834B /* MMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMDefines.h; path = MMInstagramKit/MMDefines.h; sourceTree = "<group>"; };
 		6DCCD54D1AD43D9D0062834B /* MMDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMDefines.m; path = MMInstagramKit/MMDefines.m; sourceTree = "<group>"; };
+		6DCCD54F1AD4AC090062834B /* SearchCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchCollectionViewCell.h; path = Custom/SearchCollectionViewCell.h; sourceTree = "<group>"; };
+		6DCCD5501AD4AC090062834B /* SearchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchCollectionViewCell.m; path = Custom/SearchCollectionViewCell.m; sourceTree = "<group>"; };
+		6DCCD5521AD4C7070062834B /* PhotoDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoDetailTableViewCell.h; path = Custom/PhotoDetailTableViewCell.h; sourceTree = "<group>"; };
+		6DCCD5531AD4C7070062834B /* PhotoDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoDetailTableViewCell.m; path = Custom/PhotoDetailTableViewCell.m; sourceTree = "<group>"; };
+		6DCCD5551AD4C7AB0062834B /* PhotoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoDetailViewController.h; path = Classes/PhotoDetailViewController.h; sourceTree = "<group>"; };
+		6DCCD5561AD4C7AB0062834B /* PhotoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoDetailViewController.m; path = Classes/PhotoDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +238,8 @@
 				6DCCD5121AD3B9180062834B /* ActivityViewController.m */,
 				6DCCD5141AD3B92C0062834B /* ProfileViewController.h */,
 				6DCCD5151AD3B92C0062834B /* ProfileViewController.m */,
+				6DCCD5551AD4C7AB0062834B /* PhotoDetailViewController.h */,
+				6DCCD5561AD4C7AB0062834B /* PhotoDetailViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -286,6 +297,10 @@
 				6DCCD4F21AD37A630062834B /* FeedCollectionViewCell.m */,
 				6DCCD4F41AD38C400062834B /* MMCropView.h */,
 				6DCCD4F51AD38C400062834B /* MMCropView.m */,
+				6DCCD54F1AD4AC090062834B /* SearchCollectionViewCell.h */,
+				6DCCD5501AD4AC090062834B /* SearchCollectionViewCell.m */,
+				6DCCD5521AD4C7070062834B /* PhotoDetailTableViewCell.h */,
+				6DCCD5531AD4C7070062834B /* PhotoDetailTableViewCell.m */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -403,6 +418,9 @@
 			files = (
 				6DCCD4F61AD38C400062834B /* MMCropView.m in Sources */,
 				6DCCD5041AD398730062834B /* User.m in Sources */,
+				6DCCD5511AD4AC090062834B /* SearchCollectionViewCell.m in Sources */,
+				6DCCD5541AD4C7070062834B /* PhotoDetailTableViewCell.m in Sources */,
+				6DCCD5571AD4C7AB0062834B /* PhotoDetailViewController.m in Sources */,
 				6DCCD5071AD3989E0062834B /* Comment.m in Sources */,
 				6DCCD5161AD3B92C0062834B /* ProfileViewController.m in Sources */,
 				6DA427291AD31BB5001390FB /* main.m in Sources */,

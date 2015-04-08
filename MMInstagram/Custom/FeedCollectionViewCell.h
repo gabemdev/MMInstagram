@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface FeedCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *feedImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
+@property (weak, nonatomic) IBOutlet UILabel *likesLabel;
+@property (weak, nonatomic) IBOutlet UITextView *commentsTextView;
 
 @end

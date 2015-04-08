@@ -10,56 +10,40 @@
 
 @implementation Photo
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    if (self = [super init]) {
-        if ([dictionary objectForKey:@"location"] != [NSNull null]) {
-            CLLocationDegrees lat = [(NSNumber *)[[dictionary objectForKey:@"location"] objectForKey:@"latitude"] doubleValue];
-            CLLocationDegrees lon = [(NSNumber *)[[dictionary objectForKey:@"location"] objectForKey:@"longitude"] doubleValue];
-            self.coordinate = CLLocationCoordinate2DMake(lat, lon);
-        }
-        self.photosID = dictionary[@"id"];
-        self.imageURL = [NSURL URLWithString:[[[dictionary objectForKey:@"images"] objectForKey:@"standard_resolution"] objectForKey:@"url"]];
-        self.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.imageURL]];
-        self.user = dictionary[@"user"][@"username"];
-        self.isFavorite = NO;
-    }
-    return self;
-}
+@dynamic caption;
+@dynamic imageFile;
+@dynamic user;
+@dynamic userWhoLike;
+@dynamic comments;
+@dynamic hasthags;
+@dynamic comment;
+@dynamic username;
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    if ((self = [super init])) {
-        CLLocationDegrees lat = [aDecoder decodeDoubleForKey:@"kLat"];
-        CLLocationDegrees lon = [aDecoder decodeDoubleForKey:@"kLon"];
-        self.coordinate = CLLocationCoordinate2DMake(lat, lon);
-        self.photosID = [aDecoder decodeObjectForKey:@"kPostID"];
-        self.imageURL = [aDecoder decodeObjectForKey:@"kImageURL"];
-        self.image = [aDecoder decodeObjectForKey:@"kImage"];
-        self.imageData = [aDecoder decodeObjectForKey:@"photoData"];
-        self.user = [aDecoder decodeObjectForKey:@"username"];
-        self.isFavorite = YES;
+//
+//- (void)savePhotoWithImage:(UIImage *)image caption:(NSString *)caption withUser:(User *)user withCompletion:(void (^)(NSError *))complete {
+//    NSData *imageData = UIImagePNGRepresentation(image);
+//    PFFile *file = [PFFile fileWithData:imageData];
+//    self.imageFile = file;
+//    self.caption = caption;
+//    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        PFRelation *relation = [[PFUser currentUser] relationForKey:@"photos"];
+//        [relation addObject:self];
+//        [[PFUser currentUser] saveEventually];
+//    }];
+//}
+//
+//+ (void)getCommentsFromPhoto:(Photo *)photo withCompletion:(void(^)(NSArray *photosArray))completion {
+//    PFRelation *relation = [photo relationForKey:@"comments"];
+//    [relation.query addAscendingOrder:@"timeStamp"];
+//    [relation.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            completion(objects);
+//        } else {
+//            NSLog(@"%@", error.localizedDescription);
+//        }
+//    }];
+//}
 
-        return self;
-    }
-    return nil;
-}
 
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeDouble:self.coordinate.latitude forKey:@"kLat"];
-    [aCoder encodeDouble:self.coordinate.longitude forKey:@"kLon"];
-    [aCoder encodeObject:self.photosID forKey:@"kPostID"];
-    [aCoder encodeObject:self.imageURL forKey:@"kImageURL"];
-    [aCoder encodeObject:self.image forKey:@"kImage"];
-    [aCoder encodeObject:self.imageData forKey:@"photoData"];
-    [aCoder encodeObject:self.user forKey:@"username"];
-}
-
-- (UIImage *)favoriteIndicator {
-    if (self.isFavorite) {
-        return [UIImage imageNamed:@"feed_like_icon_pressed"];
-    }
-    else {
-        return [UIImage imageNamed:@"feed_like_icon"];
-    }
-}
 
 @end

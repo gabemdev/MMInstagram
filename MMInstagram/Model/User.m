@@ -10,4 +10,12 @@
 
 @implementation User
 
+- (instancetype)initWithPFObject:(PFObject *)object {
+    if (self = [super init]) {
+        self.username = object[@"username"];
+        self.objectID = object.objectId;
+    }
+    return self;
+}
+
 @end

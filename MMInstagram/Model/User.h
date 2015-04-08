@@ -11,6 +11,9 @@
 @interface User : NSObject
 
 @property (nonatomic) NSString *userID;
+@property (nonatomic) NSString *objectID;
 @property (nonatomic) NSString *username;
+
+- (instancetype)initWithPFObject:(PFObject *)object;
 
 @end
