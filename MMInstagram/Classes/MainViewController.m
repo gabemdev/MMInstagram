@@ -56,9 +56,8 @@
         }
     }];
 
-
     NSString *activity = [photo objectForKey:@"PhotoActivityId"];
-//    [self getLikeCountwithObject:activity];
+    [self getLikeCountwithObject:activity];
 
     cell.likesLabel.text = [NSString stringWithFormat:@"%lu likes", (unsigned long)self.likes.count];
     cell.commentButton.tag = indexPath.section;

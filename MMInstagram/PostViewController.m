@@ -68,7 +68,7 @@
             }];
         }
         NSLog(@"Imagefile save in background");
-        [self performSegueWithIdentifier:@"unwindFromPostPhotoVC" sender:self];
+//        [self performSegueWithIdentifier:@"unwindFromPostPhotoVC" sender:self];
         self.tabBarController.selectedIndex = 0;
     }];
 
