@@ -7,14 +7,18 @@
 //
 
 #import "ProfileViewController.h"
+#import "SearchCollectionViewCell.h"
+#import "Photo.h"
 
-@interface ProfileViewController ()<UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+@interface ProfileViewController ()<UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *postsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followersLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followingLabel;
+
+@property NSMutableArray *photos;
 
 
 @end
@@ -24,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getProfile];
+    [self loadPhotos];
 }
 
 - (void)getProfile {
@@ -41,68 +46,47 @@
     }
 }
 
-#pragma mark - UIImagePickerDelegate
-//- (void)promptForCamera {
-//    UIImagePickerController *controller = [[UIImagePickerController alloc] init];
-//    controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-//    controller.delegate = self;
-//    [self presentViewController:controller animated:YES completion:nil];
-//}
-//
-//- (void)promptForPhotoRoll {
-//    UIImagePickerController *controller = [[UIImagePickerController alloc] init];
-//    controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//    controller.delegate = self;
-//    [self presentViewController:controller animated:YES completion:nil];
-//}
-//
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-//    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-//    [self.profileImageView setImage:image];
-//    self.selectedImage = image;
-//
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
-//
-//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//
-//}
-//
-//- (IBAction)selectPic:(UITapGestureRecognizer *)sender {
-//    UIActionSheet *actionSheet = nil;
-//    actionSheet = [[UIActionSheet alloc]initWithTitle:nil
-//                                             delegate:self cancelButtonTitle:nil
-//                               destructiveButtonTitle:nil
-//                                    otherButtonTitles:nil];
-//
-//    // only add avaliable source to actionsheet
-//    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
-//        [actionSheet addButtonWithTitle:@"Photo Library"];
-//    }
-//    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-//        [actionSheet addButtonWithTitle:@"Camera Roll"];
-//    }
-//
-//    [actionSheet addButtonWithTitle:@"Cancel"];
-//    [actionSheet setCancelButtonIndex:actionSheet.numberOfButtons-1];
-//
-//    [actionSheet showInView:self.navigationController.view];
-//}
-//
-//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    if (buttonIndex != actionSheet.cancelButtonIndex) {
-//        if (buttonIndex != actionSheet.firstOtherButtonIndex) {
-//            [self promptForPhotoRoll];
-//        } else {
-//            [self promptForCamera];
-//        }
-//    }
-//}
-//
-//
-//- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender {
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
+- (void)loadPhotos {
+    self.photos = [NSMutableArray new];
+    PFUser *user = [PFUser currentUser];
+    if (user) {
+        PFQuery *query = [Photo query];
+        [query includeKey:@"user"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            for (Photo *photo in objects) {
+                [self.photos addObject:photo];
+            }
+            [self.collectionView reloadData];
+        }];
+    }
+
+}
+
+
+#pragma mark - UICollectionViewDelegate
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    SearchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    PFObject *photo = self.photos[indexPath.row];
+    PFFile *file = [photo objectForKey:@"imageFile"];
+    [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            cell.imageView.image = [UIImage imageWithData:data];
+        }
+    }];
+    return cell;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.photos.count;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat picDimension = self.view.frame.size.width / 4.0f;
+    return CGSizeMake(picDimension, picDimension);
+}
+
 
 @end
