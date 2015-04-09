@@ -51,7 +51,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SearchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     PFObject *photo = self.photos[indexPath.row];
-    PFFile *file = [photo objectForKey:@"PhotoZ"];
+    PFFile *file = [photo objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);
@@ -73,7 +73,7 @@
     PFUser *user = self.users[indexPath.row];
     cell.textLabel.text = user.username;
 
-    PFFile *file = [user objectForKey:@"profilePhoto"];
+    PFFile *file = [user objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);

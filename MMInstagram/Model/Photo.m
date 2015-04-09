@@ -37,7 +37,7 @@
 }
 
 + (NSString *)parseClassName {
-    return @"Post";
+    return @"Photo";
 }
 
 

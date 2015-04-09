@@ -46,7 +46,7 @@
     PhotoDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     //Image
     PFObject *photo = self.photos[indexPath.section];
-    PFFile *file = [photo objectForKey:@"PhotoZ"];
+    PFFile *file = [photo objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);
@@ -57,15 +57,13 @@
 
 
     NSString *activity = [photo objectForKey:@"PhotoActivityId"];
-    [self getLikeCountwithObject:activity];
+//    [self getLikeCountwithObject:activity];
 
     cell.likesLabel.text = [NSString stringWithFormat:@"%lu likes", (unsigned long)self.likes.count];
-
-    NSLog(@"New CHanges for tomorow");
     cell.commentButton.tag = indexPath.section;
 
     cell.likeButton.tag = indexPath.section;
-    cell.commentLabel.text = [NSString stringWithFormat:@"#%@", [photo objectForKey:@"PhotoDescription"]];
+    cell.commentLabel.text = [NSString stringWithFormat:@"#%@", [photo objectForKey:@"caption"]];
     return cell;
 }
 

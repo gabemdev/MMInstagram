@@ -73,8 +73,7 @@
     UITabBarItem *feed = [tabBar.items objectAtIndex:0];
     UITabBarItem *search = [tabBar.items objectAtIndex:1];
     UITabBarItem *camera = [tabBar.items objectAtIndex:2];
-    UITabBarItem *activity = [tabBar.items objectAtIndex:3];
-    UITabBarItem *profile = [tabBar.items objectAtIndex:4];
+    UITabBarItem *profile = [tabBar.items objectAtIndex:3];
 
     UIEdgeInsets insets = UIEdgeInsetsMake(7.0f, 0.0f, -7.0f, 0.0f);
 
@@ -89,10 +88,6 @@
     camera.selectedImage = [UIImage imageNamed:@"more-addtofancy-camera-active"];
     camera.image = [UIImage imageNamed:@"more-addtofancy-camera"];
     camera.imageInsets = insets;
-
-    activity.selectedImage = [UIImage imageNamed:@"tabbar-activity-icon-highlighted"];
-    activity.image = [UIImage imageNamed:@"tabbar-activity-icon"];
-    activity.imageInsets = insets;
 
     profile.selectedImage = [UIImage imageNamed:@"tabbar-profile-icon-highlighted"];
     profile.image = [UIImage imageNamed:@"tabbar-profile-icon"];

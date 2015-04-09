@@ -10,9 +10,8 @@
 
 @interface PostViewController : UIViewController
 
-
-@property UIImage *imageToPost;
-@property (weak, nonatomic) IBOutlet UIImageView *selectedImageView;
+@property (nonatomic) UIImage *image;
+@property (nonatomic) UIImagePickerController *imagePicker;
 
 
 
