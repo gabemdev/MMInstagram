@@ -40,6 +40,17 @@
     self.currentResponder = nil;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([self.usernameField isFirstResponder] == YES) {
+        [self.usernameField resignFirstResponder];
+
+    } else if ([self.passwordField isFirstResponder] == YES) {
+        [self.passwordField resignFirstResponder];
+
+    }
+    return YES;
+}
+
 #pragma mark - Actions
 - (IBAction)onLoginButtonTapped:(id)sender {
 

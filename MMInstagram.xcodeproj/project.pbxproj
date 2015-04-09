@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26D8E1331AD5A732003166FB /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26D8E1321AD5A732003166FB /* CommentViewController.m */; };
+		6D63C4EB1AD7173E00808B41 /* ProfilePhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D63C4EA1AD7173E00808B41 /* ProfilePhotoDetailViewController.m */; };
 		6DA427291AD31BB5001390FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA427281AD31BB5001390FB /* main.m */; };
 		6DA427351AD31BB5001390FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DA427331AD31BB5001390FB /* Main.storyboard */; };
 		6DA427371AD31BB5001390FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DA427361AD31BB5001390FB /* Images.xcassets */; };
@@ -63,6 +64,8 @@
 /* Begin PBXFileReference section */
 		26D8E1311AD5A732003166FB /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
 		26D8E1321AD5A732003166FB /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		6D63C4E91AD7173E00808B41 /* ProfilePhotoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfilePhotoDetailViewController.h; path = Classes/ProfilePhotoDetailViewController.h; sourceTree = "<group>"; };
+		6D63C4EA1AD7173E00808B41 /* ProfilePhotoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfilePhotoDetailViewController.m; path = Classes/ProfilePhotoDetailViewController.m; sourceTree = "<group>"; };
 		6DA427231AD31BB4001390FB /* MMInstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMInstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA427271AD31BB5001390FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DA427281AD31BB5001390FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -244,12 +247,14 @@
 				FF9A20CD1AD4886200130FFD /* PostViewController.m */,
 				6DCCD5141AD3B92C0062834B /* ProfileViewController.h */,
 				6DCCD5151AD3B92C0062834B /* ProfileViewController.m */,
+				6D63C4E91AD7173E00808B41 /* ProfilePhotoDetailViewController.h */,
+				6D63C4EA1AD7173E00808B41 /* ProfilePhotoDetailViewController.m */,
 				FF9A20D21AD4A53E00130FFD /* EditProfileViewController.h */,
 				FF9A20D31AD4A53E00130FFD /* EditProfileViewController.m */,
-				6DCCD5551AD4C7AB0062834B /* PhotoDetailViewController.h */,
-				6DCCD5561AD4C7AB0062834B /* PhotoDetailViewController.m */,
 				26D8E1311AD5A732003166FB /* CommentViewController.h */,
 				26D8E1321AD5A732003166FB /* CommentViewController.m */,
+				6DCCD5551AD4C7AB0062834B /* PhotoDetailViewController.h */,
+				6DCCD5561AD4C7AB0062834B /* PhotoDetailViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -427,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DCCD4F61AD38C400062834B /* MMCropView.m in Sources */,
+				6D63C4EB1AD7173E00808B41 /* ProfilePhotoDetailViewController.m in Sources */,
 				6DCCD5041AD398730062834B /* User.m in Sources */,
 				6DCCD5511AD4AC090062834B /* SearchCollectionViewCell.m in Sources */,
 				6DCCD5541AD4C7070062834B /* PhotoDetailTableViewCell.m in Sources */,

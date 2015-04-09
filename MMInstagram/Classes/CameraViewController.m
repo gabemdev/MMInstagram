@@ -22,21 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    if (self.selectedImage == nil) {
-//        self.imagePicker = [[UIImagePickerController alloc] init];
-//        self.imagePicker.delegate = self;
-//        self.imagePicker.allowsEditing = YES;
-//
-//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-//            [self promptForCamera];
-//        }
-//        else {
-//            [self promptForPhotoRoll];
-//        }
-//
-//        self.imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:self.imagePicker.sourceType];
-//        [self presentViewController:self.imagePicker animated:YES completion:nil];
-//    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -50,7 +35,9 @@
         UIAlertAction *choosePhotoAction = [UIAlertAction actionWithTitle:@"Choose Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [self promptForPhotoRoll];
         }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self.tabBarController setSelectedIndex:0];
+        }];
 
         [alertController addAction:takePhotoAction];
         [alertController addAction:choosePhotoAction];
@@ -58,22 +45,6 @@
 
         [self.tabBarController presentViewController:alertController animated:YES completion:nil];
     }
-
-//    if (self.selectedImage == nil) {
-//        self.imagePicker = [[UIImagePickerController alloc] init];
-//        self.imagePicker.delegate = self;
-//        self.imagePicker.allowsEditing = YES;
-//
-//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-//            [self promptForCamera];
-//        }
-//        else {
-//            [self promptForPhotoRoll];
-//        }
-//
-//        self.imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:self.imagePicker.sourceType];
-//        [self presentViewController:self.imagePicker animated:YES completion:nil];
-//    }
 
 }
 
