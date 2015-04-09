@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "PhotoDetailTableViewCell.h"
+#import "CommentViewController.h"
 #import "Photo.h"
 
 @interface MainViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -61,6 +62,9 @@
 
     cell.likesLabel.text = [NSString stringWithFormat:@"%lu likes", (unsigned long)self.likes.count];
     cell.commentButton.tag = indexPath.section;
+
+//    NSLog(@"New CHanges for tomorow");
+//    cell.commentButton.tag = indexPath.section;
 
     cell.likeButton.tag = indexPath.section;
     cell.commentLabel.text = [NSString stringWithFormat:@"#%@", [photo objectForKey:@"caption"]];
@@ -116,7 +120,11 @@
 }
 
 #pragma mark - Actions
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (IBAction)onCommentButtonTapped:(UIButton *)sender{
+    [self performSegueWithIdentifier:@"showComments" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
     if ([segue.identifier isEqualToString:@"showLogin"]) {
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     } else if ([segue.identifier isEqualToString:@"showComment"]) {
@@ -124,7 +132,14 @@
 //        Comments *vc = segue.destinationViewController;
 
     }
+
+    else if ([segue.identifier isEqualToString:@"showComments"]){
+        CommentViewController *cvc = segue.destinationViewController;
+
+        //cvc.photo = self.photos[sender.tag];
+    }
 }
+
 - (IBAction)onLogoutButtonTapped:(id)sender {
     [PFUser logOut];
     [self performSegueWithIdentifier:@"showLogin" sender:self];
@@ -140,6 +155,7 @@
     if (self.likes.count == 0) {
         PFObject *photo = self.photos[section];
         NSString *activityId = [photo objectForKey:@"PhotoActivityId"];
+        //created a new class: Like
         PFObject *like = [PFObject objectWithClassName:@"Like"];
 
         [like setValue:[PFUser currentUser].objectId forKey:@"LikingUserId"];
