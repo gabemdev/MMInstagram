@@ -10,6 +10,8 @@
 
 @interface CommentViewController : UIViewController
 
-@property PFObject *photo;
+@property UIImage *photo;
+@property PFObject *userImage;
+@property PFObject *username;
 
 @end

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
+=======
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
+>>>>>>> 09565e770cc6f7c3ffe66b19e1d292ec83fa8ab9
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -63,8 +67,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="tapComments:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="IHz-lm-1v4"/>
-                                                        <segue destination="RMe-a9-BhF" kind="presentation" identifier="showComment" id="pKD-QN-9X7"/>
+                                                        <segue destination="qo6-Ob-qdK" kind="show" identifier="showComments" id="Xuj-Yw-As9"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUM-gj-MTB">
@@ -105,7 +108,6 @@
                                             <outlet property="detailImageView" destination="eF5-H4-QxZ" id="VU8-We-k9k"/>
                                             <outlet property="likeButton" destination="wUM-gj-MTB" id="4kk-nc-vtP"/>
                                             <outlet property="likesLabel" destination="iE3-qC-mJG" id="JWr-nZ-Lm0"/>
-                                            <segue destination="SXm-Ri-xsP" kind="show" id="qo4-hj-mp5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -140,24 +142,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-96" y="1343"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="ebP-uk-leQ">
-            <objects>
-                <viewController id="SXm-Ri-xsP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tOG-vC-pVz"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ahz-Fu-rxx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="J7R-kU-1yP">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v0e-8O-nK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-96" y="2068"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Zmn-XB-Lji">
@@ -669,7 +653,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="qo6-Ob-qdK" kind="show" identifier="showComments" id="A45-Es-VKj"/>
+                                                        <segue destination="qo6-Ob-qdK" kind="show" id="f4M-qk-wfx"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -700,7 +684,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCh-xu-vqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
+            <point key="canvasLocation" x="718" y="2005"/>
+=======
             <point key="canvasLocation" x="692" y="2119"/>
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
         </scene>
         <!--CommentViewController-->
         <scene sceneID="dr2-EK-lJx">
@@ -714,11 +702,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zm7-i5-NzL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zm7-i5-NzL">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="304"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
+<<<<<<< HEAD
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KpN-2P-pdG">
+                                <rect key="frame" x="16" y="312" width="404" height="30"/>
+=======
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KpN-2P-pdG">
                                 <rect key="frame" x="16" y="312" width="85" height="30"/>
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
                                 <constraints>
                                     <constraint firstAttribute="width" constant="152" id="Phb-WO-FNT"/>
                                     <constraint firstAttribute="height" constant="30" id="UNd-UP-fzE"/>
@@ -732,19 +726,19 @@
                                 </variation>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="br4-5x-wrZ">
-                                <rect key="frame" x="0.0" y="350" width="600" height="137"/>
+                                <rect key="frame" x="0.0" y="342" width="600" height="145"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" textLabel="fUC-0M-piG" style="IBUITableViewCellStyleDefault" id="86y-hK-lfu">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" textLabel="ulY-CA-ZND" style="IBUITableViewCellStyleDefault" id="DBf-ff-ceY">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="86y-hK-lfu" id="G5l-AU-OGN">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DBf-ff-ceY" id="rCe-7j-ycw">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="new comment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fUC-0M-piG">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ulY-CA-ZND">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -756,13 +750,22 @@
                                     <outlet property="delegate" destination="qo6-Ob-qdK" id="HcI-Mw-kHI"/>
                                 </connections>
                             </tableView>
+<<<<<<< HEAD
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ac-nJ-R8l">
+                                <rect key="frame" x="449" y="312" width="135" height="22"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+=======
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ac-nJ-R8l">
                                 <rect key="frame" x="224" y="312" width="360" height="30"/>
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="G25-T0-kIA"/>
                                     <constraint firstAttribute="height" constant="30" id="TcC-cd-TRA"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <state key="normal" title="Add Comment"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title=" Add Comment" image="timeline-comment">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="onAddCommentButtonTapped:" destination="qo6-Ob-qdK" eventType="touchUpInside" id="kUm-Ob-JTA"/>
                                 </connections>
@@ -776,11 +779,11 @@
                             <constraint firstItem="KpN-2P-pdG" firstAttribute="leading" secondItem="qtS-Co-LRC" secondAttribute="leadingMargin" id="BNg-SD-Bf1"/>
                             <constraint firstItem="KpN-2P-pdG" firstAttribute="top" secondItem="zm7-i5-NzL" secondAttribute="bottom" constant="8" id="Bze-xw-Oig"/>
                             <constraint firstItem="9Ac-nJ-R8l" firstAttribute="trailing" secondItem="qtS-Co-LRC" secondAttribute="trailingMargin" id="Es5-2U-DGV"/>
-                            <constraint firstItem="9Ac-nJ-R8l" firstAttribute="leading" secondItem="KpN-2P-pdG" secondAttribute="trailing" constant="123" id="H3m-Dq-iPy"/>
+                            <constraint firstItem="9Ac-nJ-R8l" firstAttribute="leading" secondItem="KpN-2P-pdG" secondAttribute="trailing" constant="29" id="H3m-Dq-iPy"/>
                             <constraint firstItem="zm7-i5-NzL" firstAttribute="top" secondItem="xML-VG-1lz" secondAttribute="bottom" id="I4c-js-Fne"/>
                             <constraint firstItem="9Ac-nJ-R8l" firstAttribute="top" secondItem="zm7-i5-NzL" secondAttribute="bottom" constant="8" id="Xer-Fz-Oxi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="br4-5x-wrZ" secondAttribute="trailing" constant="-16" id="njY-tU-e9i"/>
-                            <constraint firstItem="br4-5x-wrZ" firstAttribute="top" secondItem="KpN-2P-pdG" secondAttribute="bottom" constant="8" id="qvA-D6-lmB"/>
+                            <constraint firstItem="br4-5x-wrZ" firstAttribute="top" secondItem="KpN-2P-pdG" secondAttribute="bottom" id="qvA-D6-lmB"/>
                             <constraint firstItem="zm7-i5-NzL" firstAttribute="leading" secondItem="qtS-Co-LRC" secondAttribute="leadingMargin" constant="-16" id="sQr-tj-QOJ"/>
                             <constraint firstItem="vcB-Lu-9wb" firstAttribute="top" secondItem="br4-5x-wrZ" secondAttribute="bottom" id="v6B-XX-s7h"/>
                         </constraints>
@@ -793,7 +796,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zu1-Hs-eOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
+            <point key="canvasLocation" x="-88" y="2759"/>
+=======
             <point key="canvasLocation" x="-343" y="2879"/>
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
         </scene>
         <!--View Controller-->
         <scene sceneID="4E6-nN-GjJ">
@@ -811,7 +818,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCE-Gf-CYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
+            <point key="canvasLocation" x="1088" y="3167"/>
+=======
             <point key="canvasLocation" x="1808" y="3167"/>
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
         </scene>
         <!--Camera-->
         <scene sceneID="q9a-ZD-JBQ">
@@ -1371,5 +1382,8 @@
         <image name="timeline-comment" width="12" height="13"/>
         <image name="x" width="15" height="15"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Xuj-Yw-As9"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.87843137250000003" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
