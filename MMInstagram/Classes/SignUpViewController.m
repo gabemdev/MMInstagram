@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (nonatomic, assign) id currentResponder;
 @property (nonatomic) UIActionSheet *actionSheet;
+@property MainViewController *rootVC;
 
 - (UIImage *)resizeImage:(UIImage *)image toWidth:(float)width andHeight:(float)height;
 - (void)uploadImage:(NSData *)imageData;
@@ -128,6 +129,8 @@
 
 #pragma mark - Accessor Methods
 - (void)uploadImage:(NSData *)imageData {
+
+
     PFFile *imageFIle = [PFFile fileWithName:@"profile.jpg" data:imageData];
 
     [imageFIle saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -213,6 +216,21 @@
         newUser.email = email;
         newUser[@"name"] = name;
 
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSData *data = UIImagePNGRepresentation(self.profileImageView.image);
+            PFFile *imageData = [PFFile fileWithData:data];
+            [newUser setObject:imageData forKey:@"profileImage"];
+
+            [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (error) {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                } else {
+                    self.profileImageView.image = [UIImage imageWithData:data];
+                }
+            }];
+
+        });
+
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry!"
@@ -222,16 +240,17 @@
                                                       otherButtonTitles:nil];
                 [alert show];
             } else {
-                NSLog(@"New User!");
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                NSData *imageData = UIImageJPEGRepresentation(self.profileImageView.image, 0.05f);
-                [self uploadImage:imageData];
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+                                                                message:[NSString stringWithFormat:@"Your new user name is: %@", username]
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
 
+                [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }];
     }
-    
 }
 
 - (IBAction)onDismissButtonPressed:(id)sender {

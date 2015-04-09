@@ -8,42 +8,37 @@
 
 #import "Photo.h"
 
+
 @implementation Photo
 
 @dynamic caption;
-@dynamic imageFile;
 @dynamic user;
-@dynamic userWhoLike;
+@dynamic imageFile;
+@dynamic likes;
 @dynamic comments;
-@dynamic hasthags;
-@dynamic comment;
-@dynamic username;
 
-//
-//- (void)savePhotoWithImage:(UIImage *)image caption:(NSString *)caption withUser:(User *)user withCompletion:(void (^)(NSError *))complete {
-//    NSData *imageData = UIImagePNGRepresentation(image);
-//    PFFile *file = [PFFile fileWithData:imageData];
-//    self.imageFile = file;
-//    self.caption = caption;
-//    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        PFRelation *relation = [[PFUser currentUser] relationForKey:@"photos"];
-//        [relation addObject:self];
-//        [[PFUser currentUser] saveEventually];
-//    }];
-//}
-//
-//+ (void)getCommentsFromPhoto:(Photo *)photo withCompletion:(void(^)(NSArray *photosArray))completion {
-//    PFRelation *relation = [photo relationForKey:@"comments"];
-//    [relation.query addAscendingOrder:@"timeStamp"];
-//    [relation.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (!error) {
-//            completion(objects);
-//        } else {
-//            NSLog(@"%@", error.localizedDescription);
-//        }
-//    }];
-//}
++ (instancetype)createPostWIthPhoto:(UIImage *)image {
+    Photo *photo = [Photo object];
+    if (photo) {
+        NSData *photoData = UIImagePNGRepresentation(image);
+        photo.imageFile = [PFFile fileWithData:photoData];
+        photo.user = [PFUser currentUser];
+        [photo saveInBackground];
+    }
+    return photo;
+}
 
+- (UIImage *)convertToImage {
+    return [UIImage imageWithData:[self.imageFile getData]];
+}
+
++ (void)load {
+    [self registerSubclass];
+}
+
++ (NSString *)parseClassName {
+    return @"Photo";
+}
 
 
 @end

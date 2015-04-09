@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "PhotoDetailTableViewCell.h"
 #import "CommentViewController.h"
+#import "Photo.h"
 
 @interface MainViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
@@ -46,7 +47,7 @@
     PhotoDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     //Image
     PFObject *photo = self.photos[indexPath.section];
-    PFFile *file = [photo objectForKey:@"PhotoZ"];
+    PFFile *file = [photo objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);
@@ -57,17 +58,16 @@
 
 
     NSString *activity = [photo objectForKey:@"PhotoActivityId"];
-    [self getLikeCountwithObject:activity];
+//    [self getLikeCountwithObject:activity];
 
     cell.likesLabel.text = [NSString stringWithFormat:@"%lu likes", (unsigned long)self.likes.count];
-
-    //[cell.commentButton addTarget:self action:@selector(commentButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    cell.commentButton.tag = indexPath.section;
 
 //    NSLog(@"New CHanges for tomorow");
 //    cell.commentButton.tag = indexPath.section;
 
     cell.likeButton.tag = indexPath.section;
-    //cell.commentLabel.text = [NSString stringWithFormat:@"#%@", [photo objectForKey:@"PhotoDescription"]];
+    cell.commentLabel.text = [NSString stringWithFormat:@"#%@", [photo objectForKey:@"caption"]];
     return cell;
 }
 
@@ -81,13 +81,17 @@
 
 #pragma mark - Accessor Methods
 - (void)retrievePhotos {
+    NSMutableArray *posts = [NSMutableArray new];
     PFQuery *query = [PFQuery queryWithClassName:@"Photo"];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         } else {
-            self.photos = objects;
+            for (Photo *photo in objects) {
+                [posts addObject:photo];
+            }
+            self.photos = posts.mutableCopy;
             [self.tableView reloadData];
 
         }
@@ -110,7 +114,6 @@
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
         NSLog(@"Current user: %@", currentUser[@"name"]);
-        
     } else {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }
@@ -124,6 +127,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
     if ([segue.identifier isEqualToString:@"showLogin"]) {
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
+    } else if ([segue.identifier isEqualToString:@"showComment"]) {
+//        Photo *photoCOmment = [self.photos objectAtIndex:[self.tableView indexPathForCell:cell].row];
+//        Comments *vc = segue.destinationViewController;
+
     }
 
     else if ([segue.identifier isEqualToString:@"showComments"]){
@@ -139,6 +146,10 @@
 
 }
 
+- (IBAction)tapComments:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"showComment" sender:self];
+}
+
 - (IBAction)likeButtonTapped:(id)sender {
     NSInteger section;
     if (self.likes.count == 0) {
@@ -146,7 +157,7 @@
         NSString *activityId = [photo objectForKey:@"PhotoActivityId"];
         //created a new class: Like
         PFObject *like = [PFObject objectWithClassName:@"Like"];
-        //saving likes
+
         [like setValue:[PFUser currentUser].objectId forKey:@"LikingUserId"];
         [like setValue:activityId forKey:@"ActivityId"];
         [like saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

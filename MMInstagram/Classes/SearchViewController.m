@@ -9,10 +9,15 @@
 #import "SearchViewController.h"
 #import "SearchCollectionViewCell.h"
 
-@interface SearchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>
+@interface SearchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
+
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+
 @property NSArray *photos;
 @property NSArray *users;
 @property PFUser *user;
@@ -46,7 +51,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SearchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     PFObject *photo = self.photos[indexPath.row];
-    PFFile *file = [photo objectForKey:@"PhotoZ"];
+    PFFile *file = [photo objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);
@@ -68,7 +73,7 @@
     PFUser *user = self.users[indexPath.row];
     cell.textLabel.text = user.username;
 
-    PFFile *file = [user objectForKey:@"profilePhoto"];
+    PFFile *file = [user objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error.localizedDescription);
@@ -122,5 +127,44 @@
 }
 
 
+#pragma mark - SearchBar
+//
+//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+//{
+//    NSLog(@"searchBarShouldBeginEditing");
+//    return YES;
+//}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+
+    if (self.segmentControl.selectedSegmentIndex == 0) {
+
+        PFQuery *searchQuery = [PFUser query];
+        [searchQuery whereKey:@"PhotoDescription" containsString:searchText];
+        [searchQuery orderByDescending:@"createdAt"];
+        [searchQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (error) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            } else {
+                self.photos = objects;
+                [self.collectionView reloadData];
+            }
+        }];
+
+    } else if (self.segmentControl.selectedSegmentIndex == 1) {
+
+        PFQuery *searchQuery = [PFUser query];
+        [searchQuery whereKey:@"username" hasPrefix:searchText];
+        [searchQuery orderByDescending:@"createdAt"];
+        [searchQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (error) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            } else {
+                self.users = objects;
+                [self.tableView reloadData];
+            }
+        }];
+    }
+}
 
 @end

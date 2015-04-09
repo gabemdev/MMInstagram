@@ -12,152 +12,146 @@
 
 @interface CameraViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
 
-@property UIImage *imageToPost;
-@property UIImage *thumbImage;
+@property (nonatomic) UIImagePickerController *imagePicker;
+@property (nonatomic)UIImage *selectedImage;
+@property (nonatomic) BOOL imagePickerLoaded;
 
 @end
 
 @implementation CameraViewController
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    if (self.selectedImage == nil) {
+//        self.imagePicker = [[UIImagePickerController alloc] init];
+//        self.imagePicker.delegate = self;
+//        self.imagePicker.allowsEditing = YES;
+//
+//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//            [self promptForCamera];
+//        }
+//        else {
+//            [self promptForPhotoRoll];
+//        }
+//
+//        self.imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:self.imagePicker.sourceType];
+//        [self presentViewController:self.imagePicker animated:YES completion:nil];
+//    }
 }
 
-- (void)showCameraController
-{
-    if ([UIImagePickerController isSourceTypeAvailable:
-         UIImagePickerControllerSourceTypeCamera] == NO)
-    {
-        return;
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    if (!self.imagePickerLoaded) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *takePhotoAction = [UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self promptForCamera];
+        }];
+        UIAlertAction *choosePhotoAction = [UIAlertAction actionWithTitle:@"Choose Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self promptForPhotoRoll];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
+        [alertController addAction:takePhotoAction];
+        [alertController addAction:choosePhotoAction];
+        [alertController addAction:cancelAction];
+
+        [self.tabBarController presentViewController:alertController animated:YES completion:nil];
     }
 
-    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
-    cameraUI.allowsEditing = NO;
-    cameraUI.cameraOverlayView = nil;
-    cameraUI.delegate = self;
-    [self presentViewController:cameraUI animated:YES completion:nil];
+//    if (self.selectedImage == nil) {
+//        self.imagePicker = [[UIImagePickerController alloc] init];
+//        self.imagePicker.delegate = self;
+//        self.imagePicker.allowsEditing = YES;
+//
+//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//            [self promptForCamera];
+//        }
+//        else {
+//            [self promptForPhotoRoll];
+//        }
+//
+//        self.imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:self.imagePicker.sourceType];
+//        [self presentViewController:self.imagePicker animated:YES completion:nil];
+//    }
+
 }
 
-
-
-
 #pragma mark - UIImagePickerControllerDelegate
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-
-    [self.tabBarController.delegate tabBarController:self.tabBarController shouldSelectViewController:[[self.tabBarController viewControllers] objectAtIndex:0]];
-    [self.tabBarController setSelectedIndex:0];
-}
-
-
-
-#pragma mark - UIImagePickerControllerDelegate
-
 
 - (void)promptForCamera {
-    UIImagePickerController *controller = [[UIImagePickerController alloc] init];
-    controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-    controller.delegate = self;
-    [self presentViewController:controller animated:YES completion:nil];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        self.imagePickerLoaded = YES;
+        self.imagePicker = [[UIImagePickerController alloc] init];
+        self.imagePicker.delegate = self;
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.imagePicker.allowsEditing = NO;
+        [self presentViewController:self.imagePicker animated:YES completion:nil];
+    } else {
+        NSLog(@"There is no camera on this device.");
+    }
 }
 
 - (void)promptForPhotoRoll {
-    UIImagePickerController *controller = [[UIImagePickerController alloc] init];
-    controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    controller.delegate = self;
-    [self presentViewController:controller animated:YES completion:nil];
+    self.imagePickerLoaded = YES;
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.delegate = self;
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    self.imagePicker.allowsEditing = NO;
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+}
+
+- (void)resetImagePicker {
+    self.imagePickerLoaded = NO;
+    self.imagePicker = nil;
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    self.imageToPost = image;
-    self.thumbImage = image;
+    UIImage *selected = [self resizeImage:info[UIImagePickerControllerOriginalImage] toWidth:320.0 andHeight:480.0];
+    self.selectedImage = selected;
+
+    if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        UIImageWriteToSavedPhotosAlbum(self.selectedImage, nil, nil, nil);
+    }
+
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"photoReview" sender:self];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self.tabBarController setSelectedIndex:0];
+    [self resetImagePicker];
 }
 
 
-- (IBAction)selectPic:(UITapGestureRecognizer *)sender {
-    UIActionSheet *actionSheet = nil;
-    actionSheet = [[UIActionSheet alloc]initWithTitle:nil
-                                             delegate:self cancelButtonTitle:nil
-                               destructiveButtonTitle:nil
-                                    otherButtonTitles:nil];
-
-    // only add avaliable source to actionsheet
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
-        [actionSheet addButtonWithTitle:@"Photo Library"];
-    }
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        [actionSheet addButtonWithTitle:@"Camera Roll"];
-    }
-    [actionSheet addButtonWithTitle:@"Cancel"];
-    [actionSheet setCancelButtonIndex:actionSheet.numberOfButtons-1];
-    [actionSheet showInView:self.navigationController.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != actionSheet.cancelButtonIndex) {
-        if (buttonIndex != actionSheet.firstOtherButtonIndex) {
-            [self promptForPhotoRoll];
-        } else {
-            [self promptForCamera];
-        }
-    }
-}
-
-
-
-
-
-
-//
-//---------------
-//
-//
-//
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-//{
-//    UIImage *originalImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
-//    UIImageWriteToSavedPhotosAlbum (originalImage, nil, nil , nil);
-//
-//    self.imageToPost = [originalImage thumbImage:750
-//                                   transparentBorder:0
-//                                        cornerRadius:0
-//                                interpolationQuality:kCGInterpolationHigh];
-//
-//    self.thumbImage = [originalImage thumbImage:100
-//                                      transparentBorder:0
-//                                           cornerRadius:6
-//                                   interpolationQuality:kCGInterpolationDefault];
-//
-//    [self performSegueWithIdentifier:@"ToPostPhotoVC" sender:self];
-//
-//    [self dismissViewControllerAnimated:NO completion:nil]; // If user comes back from PostPhotoVC this VC will be empty
-//}
-//
-//
 #pragma mark - Segue Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"PostToVC"])
+    if ([segue.identifier isEqualToString:@"photoReview"])
     {
         PostViewController *postPhotoVC = segue.destinationViewController;
-        postPhotoVC.imageToPost = self.imageToPost;
-        postPhotoVC.thumbImage = self.thumbImage;
+        postPhotoVC.image = self.selectedImage;
+        postPhotoVC.imagePicker = self.imagePicker;
     }
 }
 
 - (IBAction)unwindFromPostPhotoVC:(UIStoryboardSegue *)segue
 {
-    //
+    [self resetImagePicker];
+    self.tabBarController.selectedIndex = 0;
 }
 
+-(UIImage*)resizeImage:(UIImage *)image toWidth:(float)width andHeight:(float)height {
+    CGSize newSize = CGSizeMake(width, height);
+    CGRect newRect = CGRectMake(0, 0, width, height);
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:newRect];
+    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return resizedImage;
+}
 
 @end
