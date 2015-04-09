@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -74,6 +74,9 @@
                                                     <state key="normal" title="Comment">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="onCommentButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Us2-YV-YBD"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -582,11 +585,13 @@
                                                     <state key="normal" title="Comment">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="qo6-Ob-qdK" kind="show" identifier="showComments" id="A45-Es-VKj"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="commentButton" destination="MEp-6f-OHg" id="Z15-zK-8zN"/>
                                             <outlet property="commentLabel" destination="B6L-fk-9FV" id="Ry3-sg-R4i"/>
                                             <outlet property="detailImageView" destination="NlN-Ka-fJJ" id="1Rd-fH-jUT"/>
                                             <outlet property="imageView" destination="NlN-Ka-fJJ" id="WoL-Yz-yEz"/>
@@ -614,6 +619,99 @@
             </objects>
             <point key="canvasLocation" x="522" y="2051"/>
         </scene>
+        <!--CommentViewController-->
+        <scene sceneID="dr2-EK-lJx">
+            <objects>
+                <viewController title="CommentViewController" id="qo6-Ob-qdK" customClass="CommentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xML-VG-1lz"/>
+                        <viewControllerLayoutGuide type="bottom" id="vcB-Lu-9wb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qtS-Co-LRC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zm7-i5-NzL">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="304"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KpN-2P-pdG">
+                                <rect key="frame" x="16" y="312" width="355" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="152" id="Phb-WO-FNT"/>
+                                    <constraint firstAttribute="height" constant="30" id="UNd-UP-fzE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Phb-WO-FNT"/>
+                                    </mask>
+                                </variation>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="br4-5x-wrZ">
+                                <rect key="frame" x="0.0" y="350" width="600" height="137"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" textLabel="fUC-0M-piG" style="IBUITableViewCellStyleDefault" id="86y-hK-lfu">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="86y-hK-lfu" id="G5l-AU-OGN">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="new comment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fUC-0M-piG">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qo6-Ob-qdK" id="A2G-bP-URM"/>
+                                    <outlet property="delegate" destination="qo6-Ob-qdK" id="HcI-Mw-kHI"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ac-nJ-R8l">
+                                <rect key="frame" x="494" y="312" width="90" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="TcC-cd-TRA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Add Comment"/>
+                                <connections>
+                                    <action selector="onAddCommentButtonTapped:" destination="qo6-Ob-qdK" eventType="touchUpInside" id="kUm-Ob-JTA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vcB-Lu-9wb" firstAttribute="top" secondItem="zm7-i5-NzL" secondAttribute="bottom" constant="183" id="1g3-J0-oFO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zm7-i5-NzL" secondAttribute="trailing" constant="-16" id="8rl-Lb-7Ws"/>
+                            <constraint firstItem="br4-5x-wrZ" firstAttribute="leading" secondItem="qtS-Co-LRC" secondAttribute="leadingMargin" constant="-16" id="Awn-27-RxF"/>
+                            <constraint firstItem="KpN-2P-pdG" firstAttribute="leading" secondItem="qtS-Co-LRC" secondAttribute="leadingMargin" id="BNg-SD-Bf1"/>
+                            <constraint firstItem="KpN-2P-pdG" firstAttribute="top" secondItem="zm7-i5-NzL" secondAttribute="bottom" constant="8" id="Bze-xw-Oig"/>
+                            <constraint firstItem="9Ac-nJ-R8l" firstAttribute="trailing" secondItem="qtS-Co-LRC" secondAttribute="trailingMargin" id="Es5-2U-DGV"/>
+                            <constraint firstItem="9Ac-nJ-R8l" firstAttribute="leading" secondItem="KpN-2P-pdG" secondAttribute="trailing" constant="123" id="H3m-Dq-iPy"/>
+                            <constraint firstItem="zm7-i5-NzL" firstAttribute="top" secondItem="xML-VG-1lz" secondAttribute="bottom" id="I4c-js-Fne"/>
+                            <constraint firstItem="9Ac-nJ-R8l" firstAttribute="top" secondItem="zm7-i5-NzL" secondAttribute="bottom" constant="8" id="Xer-Fz-Oxi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="br4-5x-wrZ" secondAttribute="trailing" constant="-16" id="njY-tU-e9i"/>
+                            <constraint firstItem="br4-5x-wrZ" firstAttribute="top" secondItem="KpN-2P-pdG" secondAttribute="bottom" constant="8" id="qvA-D6-lmB"/>
+                            <constraint firstItem="zm7-i5-NzL" firstAttribute="leading" secondItem="qtS-Co-LRC" secondAttribute="leadingMargin" constant="-16" id="sQr-tj-QOJ"/>
+                            <constraint firstItem="vcB-Lu-9wb" firstAttribute="top" secondItem="br4-5x-wrZ" secondAttribute="bottom" id="v6B-XX-s7h"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="commentImage" destination="zm7-i5-NzL" id="509-rz-9dn"/>
+                        <outlet property="commentTableView" destination="br4-5x-wrZ" id="t7f-6h-nej"/>
+                        <outlet property="commentTextField" destination="KpN-2P-pdG" id="fV5-PS-Jqx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zu1-Hs-eOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="281" y="2799"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="4E6-nN-GjJ">
             <objects>
@@ -630,7 +728,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCE-Gf-CYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="718" y="2759"/>
+            <point key="canvasLocation" x="934" y="2799"/>
         </scene>
         <!--Camera-->
         <scene sceneID="q9a-ZD-JBQ">

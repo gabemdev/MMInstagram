@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "PhotoDetailTableViewCell.h"
+#import "CommentViewController.h"
 
 @interface MainViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
@@ -59,13 +60,14 @@
     [self getLikeCountwithObject:activity];
 
     cell.likesLabel.text = [NSString stringWithFormat:@"%lu likes", (unsigned long)self.likes.count];
-    [cell.commentButton addTarget:self action:@selector(commentButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
-    NSLog(@"New CHanges for tomorow");
-    cell.commentButton.tag = indexPath.section;
+    //[cell.commentButton addTarget:self action:@selector(commentButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+//    NSLog(@"New CHanges for tomorow");
+//    cell.commentButton.tag = indexPath.section;
 
     cell.likeButton.tag = indexPath.section;
-    cell.commentLabel.text = [NSString stringWithFormat:@"#%@", [photo objectForKey:@"PhotoDescription"]];
+    //cell.commentLabel.text = [NSString stringWithFormat:@"#%@", [photo objectForKey:@"PhotoDescription"]];
     return cell;
 }
 
@@ -115,11 +117,22 @@
 }
 
 #pragma mark - Actions
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (IBAction)onCommentButtonTapped:(UIButton *)sender{
+    [self performSegueWithIdentifier:@"showComments" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
     if ([segue.identifier isEqualToString:@"showLogin"]) {
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     }
+
+    else if ([segue.identifier isEqualToString:@"showComments"]){
+        CommentViewController *cvc = segue.destinationViewController;
+
+        //cvc.photo = self.photos[sender.tag];
+    }
 }
+
 - (IBAction)onLogoutButtonTapped:(id)sender {
     [PFUser logOut];
     [self performSegueWithIdentifier:@"showLogin" sender:self];
@@ -131,8 +144,9 @@
     if (self.likes.count == 0) {
         PFObject *photo = self.photos[section];
         NSString *activityId = [photo objectForKey:@"PhotoActivityId"];
+        //created a new class: Like
         PFObject *like = [PFObject objectWithClassName:@"Like"];
-
+        //saving likes
         [like setValue:[PFUser currentUser].objectId forKey:@"LikingUserId"];
         [like setValue:activityId forKey:@"ActivityId"];
         [like saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
