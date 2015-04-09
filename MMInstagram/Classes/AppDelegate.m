@@ -60,7 +60,7 @@
 #pragma mark - Appearance
 - (void)applyStyleSheet {
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0.92 green:0.38 blue:0.38 alpha:1.00]}];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0.92 green:0.38 blue:0.38 alpha:1.00]];
 
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.92 green:0.38 blue:0.38 alpha:1.00]];

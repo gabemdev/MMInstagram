@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.likeButton.layer.cornerRadius = 3;
+    self.commentButton.layer.cornerRadius = 3;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -20,4 +22,11 @@
     // Configure the view for the selected state
 }
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.likeButton.layer.cornerRadius = 3;
+        self.commentButton.layer.cornerRadius = 3;
+    }
+    return self;
+}
 @end

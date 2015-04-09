@@ -10,12 +10,19 @@
 
 @implementation User
 
-- (instancetype)initWithPFObject:(PFObject *)object {
-    if (self = [super init]) {
-        self.username = object[@"username"];
-        self.objectID = object.objectId;
-    }
-    return self;
+@dynamic username;
+@dynamic user;
+@dynamic posts;
+@dynamic email;
+@dynamic profileImage;
+@dynamic name;
+
++ (void)load {
+    [self registerSubclass];
+}
+
++ (NSString *)parseClassName {
+    return @"Person";
 }
 
 @end

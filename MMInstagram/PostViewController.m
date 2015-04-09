@@ -12,14 +12,10 @@
 #import "User.h"
 #import "Comment.h"
 
-@interface PostViewController ()
+@interface PostViewController ()<UITextFieldDelegate>
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UITextField *commentTextField;
-
-
-
-
+@property PFFile *photoFile;
 
 @end
 
@@ -27,13 +23,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.imageView.image = self.thumbImage;
+    self.selectedImageView.image = self.imageToPost;
+    self.commentTextField.delegate = self;
 }
-//
-//- (IBAction)onPostButtonPressed:(id)sender
-//{
-//    Post *post = [Post createPostWithPhoto:self.imageToPost];
-//    Comment *comment = nil;
-//}
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)saveImage:(UIButton *)sender {
+    PFObject *photo = [PFObject objectWithClassName:@"Photo"];
+    PFObject *activity = [PFObject objectWithClassName:@"Activity"];
+
+    NSData *imageData = UIImagePNGRepresentation(self.imageToPost);
+    self.photoFile = [PFFile fileWithData:imageData];
+
+    [photo setObject:self.photoFile forKey:@"PhotoZ"];
+    [photo setObject:[PFUser currentUser].objectId forKey:@"PhotoPoster"];
+    [photo setObject:self.commentTextField.text forKey:@"PhotoDescription"];
+
+    [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [photo setObject:activity.objectId forKey:@"PhotoActivityId"];
+
+        [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Image Saved!" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            [alert show];
+
+            double delayInSeconds = 1.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [alert dismissWithClickedButtonIndex:0 animated:YES];
+            });
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self.tabBarController setSelectedIndex:0];
+            }];
+        }];
+    }];
+}
 @end

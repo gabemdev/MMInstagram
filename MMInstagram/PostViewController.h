@@ -12,7 +12,7 @@
 
 
 @property UIImage *imageToPost;
-@property UIImage *thumbImage;
+@property (weak, nonatomic) IBOutlet UIImageView *selectedImageView;
 
 
 

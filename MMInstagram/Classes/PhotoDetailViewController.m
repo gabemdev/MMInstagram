@@ -9,7 +9,7 @@
 #import "PhotoDetailViewController.h"
 #import "PhotoDetailTableViewCell.h"
 
-@interface PhotoDetailViewController ()<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface PhotoDetailViewController ()<UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property PFObject *photo;
 @property NSMutableArray *photoArray;

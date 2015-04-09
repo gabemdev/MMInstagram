@@ -7,23 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
 
-@interface Photo : PFObject
+@interface Photo : PFObject<PFSubclassing>
 
-@property NSString *caption;
-@property PFFile *imageFile;
-@property User *user;
-@property NSString *username;
-@property NSString *comment;
-@property PFRelation *userWhoLike;
-@property PFRelation *comments;
-@property PFRelation *hasthags;
+@property (nonatomic, strong) NSString *caption;
+@property (nonatomic, strong) PFFile *imageFile;
+@property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) NSArray *likes;
+@property (nonatomic, strong) NSArray *comments;
 
-//+ (NSString *)parseClassName;
-//
-//- (void)savePhotoWithImage:(UIImage *)image caption:(NSString *)caption withUser:(User *)user withCompletion:(void(^)(NSError *error))complete;
-//- (UIImage *)getImage;
-//- (void)getImageWithCompletion:(void(^)(UIImage *image))completion;
++ (instancetype)createPostWIthPhoto:(UIImage *)image;
+
++ (NSString *)parseClassName;
+
+- (UIImage *)convertToImage;
 
 @end

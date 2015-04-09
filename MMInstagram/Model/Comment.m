@@ -9,5 +9,15 @@
 #import "Comment.h"
 
 @implementation Comment
+@dynamic  comment;
+@dynamic user;
+
++ (void)load {
+    [self registerSubclass];
+}
+
++ (NSString *)parseClassName {
+    return @"Comment";
+}
 
 @end

@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface User : NSObject
+@interface User : PFObject<PFSubclassing>
 
-@property (nonatomic) NSString *userID;
-@property (nonatomic) NSString *objectID;
-@property (nonatomic) NSString *username;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) PFFile *profileImage;
+@property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) NSArray *posts;
 
-- (instancetype)initWithPFObject:(PFObject *)object;
++ (NSString *)parseClassName;
 
 @end

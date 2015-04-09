@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "PhotoDetailTableViewCell.h"
+#import "Photo.h"
 
 @interface MainViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
@@ -59,7 +60,6 @@
     [self getLikeCountwithObject:activity];
 
     cell.likesLabel.text = [NSString stringWithFormat:@"%lu likes", (unsigned long)self.likes.count];
-    [cell.commentButton addTarget:self action:@selector(commentButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
     NSLog(@"New CHanges for tomorow");
     cell.commentButton.tag = indexPath.section;
@@ -79,13 +79,17 @@
 
 #pragma mark - Accessor Methods
 - (void)retrievePhotos {
+    NSMutableArray *posts = [NSMutableArray new];
     PFQuery *query = [PFQuery queryWithClassName:@"Photo"];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         } else {
-            self.photos = objects;
+            for (Photo *photo in objects) {
+                [posts addObject:photo];
+            }
+            self.photos = posts.mutableCopy;
             [self.tableView reloadData];
 
         }
@@ -108,7 +112,6 @@
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
         NSLog(@"Current user: %@", currentUser[@"name"]);
-        
     } else {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }
@@ -118,12 +121,20 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showLogin"]) {
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
+    } else if ([segue.identifier isEqualToString:@"showComment"]) {
+//        Photo *photoCOmment = [self.photos objectAtIndex:[self.tableView indexPathForCell:cell].row];
+//        Comments *vc = segue.destinationViewController;
+
     }
 }
 - (IBAction)onLogoutButtonTapped:(id)sender {
     [PFUser logOut];
     [self performSegueWithIdentifier:@"showLogin" sender:self];
 
+}
+
+- (IBAction)tapComments:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"showComment" sender:self];
 }
 
 - (IBAction)likeButtonTapped:(id)sender {
