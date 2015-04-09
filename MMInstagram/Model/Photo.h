@@ -15,6 +15,7 @@
 @property (nonatomic, strong) PFUser *user;
 @property (nonatomic, strong) NSArray *likes;
 @property (nonatomic, strong) NSArray *comments;
+@property (nonatomic, strong) NSData *imageData;
 
 + (instancetype)createPostWIthPhoto:(UIImage *)image;
 

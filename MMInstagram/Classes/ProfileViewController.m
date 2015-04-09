@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "SearchCollectionViewCell.h"
+#import "ProfilePhotoDetailViewController.h"
 #import "Photo.h"
 
 @interface ProfileViewController ()<UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
@@ -27,6 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(106.0, 106.0);
+    layout.minimumInteritemSpacing = 1.0;
+    layout.minimumLineSpacing = 1.0;
     [self getProfile];
     [self loadPhotos];
 }
@@ -34,13 +39,17 @@
 - (void)getProfile {
     PFUser *current = [PFUser currentUser];
     if (current) {
-        self.nameLabel.text = current[@"name"];
+        self.navigationItem.title = current[@"name"];
         PFFile *imageData = [current objectForKey:@"profileImage"];
         [imageData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (error) {
                 NSLog(@"Error: %@", error.localizedDescription);
             } else {
                 self.profileImageView.image = [UIImage imageWithData:data];
+                self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
+                self.profileImageView.layer.masksToBounds = YES;
+                self.profileImageView.layer.borderColor = [UIColor colorWithRed:0.59 green:0.60 blue:0.62 alpha:1.00].CGColor;
+                self.profileImageView.layer.borderWidth = 4;
             }
         }];
     }
@@ -57,6 +66,7 @@
                 [self.photos addObject:photo];
             }
             [self.collectionView reloadData];
+            self.postsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.photos.count];
         }];
     }
 
@@ -82,11 +92,20 @@
     return self.photos.count;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat picDimension = self.view.frame.size.width / 4.0f;
-    return CGSizeMake(picDimension, picDimension);
+
+#pragma mark - Actions
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([segue.identifier isEqualToString:@"photoViewSegue"])
+//    {
+////        UICollectionViewCell *cell = sender;
+////        ProfilePhotoDetailViewController *vc = segue.destinationViewController;
+////        vc.selected = [self.photos objectAtIndex:[self.collectionView indexPathForCell:cell].row];
+////        vc.photo = [self.photos objectAtIndex:[self.collectionView indexPathForCell:cell].row];
+//    }
+    SearchCollectionViewCell *cell = sender;
+    ProfilePhotoDetailViewController *vc = segue.destinationViewController;
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    vc.photo = self.photos[indexPath.row];
+
 }
-
-
 @end

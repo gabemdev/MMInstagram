@@ -16,6 +16,7 @@
 @dynamic imageFile;
 @dynamic likes;
 @dynamic comments;
+@dynamic imageData;
 
 + (instancetype)createPostWIthPhoto:(UIImage *)image {
     Photo *photo = [Photo object];
