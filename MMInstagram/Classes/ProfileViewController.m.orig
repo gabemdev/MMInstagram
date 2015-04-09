@@ -35,7 +35,15 @@
     layout.minimumInteritemSpacing = 1.0;
     layout.minimumLineSpacing = 1.0;
     [self getProfile];
+<<<<<<< HEAD
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectPic:)];
+    [singleTap setNumberOfTapsRequired:1];
+    singleTap.delegate = self;
+    [self.view addGestureRecognizer:singleTap];
+
+=======
     [self loadPhotos];
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
 }
 
 
@@ -60,6 +68,77 @@
     }
 }
 
+<<<<<<< HEAD
+- (void)getUserName {
+    PFUser *current = [PFUser currentUser];
+        self.userName = current[@"username"];
+}
+
+
+#pragma mark - UIImagePickerDelegate
+
+- (void)promptForCamera {
+    UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+    controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+    controller.delegate = self;
+    [self presentViewController:controller animated:YES completion:nil];
+}
+- (void)promptForPhotoRoll {
+    UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+    controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    controller.delegate = self;
+    [self presentViewController:controller animated:YES completion:nil];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    [self.profileImageView setImage:image];
+    self.selectedImage = image;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)selectPic:(UITapGestureRecognizer *)sender {
+    UIActionSheet *actionSheet = nil;
+    actionSheet = [[UIActionSheet alloc]initWithTitle:nil
+                                             delegate:self cancelButtonTitle:nil
+                               destructiveButtonTitle:nil
+                                    otherButtonTitles:nil];
+    // only add avaliable source to actionsheet
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+        [actionSheet addButtonWithTitle:@"Photo Library"];
+    }
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        [actionSheet addButtonWithTitle:@"Camera Roll"];
+    }
+    [actionSheet addButtonWithTitle:@"Cancel"];
+    [actionSheet setCancelButtonIndex:actionSheet.numberOfButtons-1];
+    [actionSheet showInView:self.navigationController.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        if (buttonIndex != actionSheet.firstOtherButtonIndex) {
+            [self promptForPhotoRoll];
+        } else {
+            [self promptForCamera];
+        }
+    }
+}
+
+
+
+
+- (IBAction)unwindFromWebView:(UIStoryboardSegue *)sender
+{
+
+}- (IBAction)onCancelButtonTapped:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+=======
 - (void)loadPhotos {
     self.photos = [NSMutableArray new];
     PFUser *user = [PFUser currentUser];
@@ -111,6 +190,7 @@
     ProfilePhotoDetailViewController *vc = segue.destinationViewController;
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
     vc.photo = self.photos[indexPath.row];
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
 
 }
 @end

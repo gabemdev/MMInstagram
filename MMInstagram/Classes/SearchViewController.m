@@ -134,15 +134,21 @@
 //    NSLog(@"searchBarShouldBeginEditing");
 //    return YES;
 //}
+//
+//- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+//    
+//}
+
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 
     if (self.segmentControl.selectedSegmentIndex == 0) {
 
         PFQuery *searchQuery = [PFUser query];
-        [searchQuery whereKey:@"PhotoDescription" containsString:searchText];
+        [searchQuery whereKey:@"objectId" containsString:searchText];
         [searchQuery orderByDescending:@"createdAt"];
         [searchQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
             if (error) {
                 NSLog(@"Error: %@", error.localizedDescription);
             } else {
