@@ -41,30 +41,24 @@
 
 #pragma mark - Actions
 - (IBAction)onEmailButtonTapped:(id)sender {
+    UIImage *shareImage = self.selectedImageView.image;
+    NSString *shareString = @"Check this out!";
+    NSArray *shareItems = @[shareImage, shareString];
+    UIActivityViewController *share = [[UIActivityViewController alloc] initWithActivityItems:shareItems applicationActivities:nil];
+    share.excludedActivityTypes = @[UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeAddToReadingList, UIActivityTypePostToTencentWeibo, UIActivityTypePrint, UIActivityTypePostToWeibo, UIActivityTypePostToVimeo, UIActivityTypePrint, UIActivityTypePostToTwitter, UIActivityTypePostToFacebook];
+    [self.tabBarController presentViewController:share animated:YES completion:nil];
 }
 
 - (IBAction)onShareButtonTapped:(id)sender {
+    UIImage *shareImage = self.selectedImageView.image;
+    NSString *shareString = @"Check this out!";
+    NSArray *shareItems = @[shareImage, shareString];
+    UIActivityViewController *share = [[UIActivityViewController alloc] initWithActivityItems:shareItems applicationActivities:nil];
+    share.excludedActivityTypes = @[UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeAddToReadingList, UIActivityTypePostToTencentWeibo, UIActivityTypePrint, UIActivityTypePostToWeibo, UIActivityTypePostToVimeo, UIActivityTypePrint];
+    [self.tabBarController presentViewController:share animated:YES completion:nil];
 }
 
 - (IBAction)selectPic:(UITapGestureRecognizer *)sender {
-    NSLog(@"Tap Selected");
-
-//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"This will delete your image from your feed!" preferredStyle:UIAlertControllerStyleActionSheet];
-//    UIAlertAction *delete = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//        Photo *selected = self.photo;
-//        [selected deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if (error) {
-//                NSLog(@"Error: %@", error.localizedDescription);
-//            } else {
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Deleted" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//                [alert show];
-//            }
-//        }];
-//        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-//        [alertController addAction:delete];
-//        [alertController addAction:cancel];
-//        [self.tabBarController presentViewController:alertController animated:YES completion:nil];
-//    }];
 
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *delete = [UIAlertAction actionWithTitle:@"Delete Photo" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
@@ -86,11 +80,6 @@
     [alertController addAction:cancelAction];
 
     [self.tabBarController presentViewController:alertController animated:YES completion:nil];
-
-//    UIActionSheet *actionSheet = nil;
-//    actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Delete From Favorites", @"Share", nil];
-//    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-//    [actionSheet showInView:self.navigationController.view];
 }
 
 

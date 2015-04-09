@@ -56,7 +56,7 @@
         self.imagePicker = [[UIImagePickerController alloc] init];
         self.imagePicker.delegate = self;
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        self.imagePicker.allowsEditing = NO;
+        self.imagePicker.allowsEditing = YES;
         [self presentViewController:self.imagePicker animated:YES completion:nil];
     } else {
         NSLog(@"There is no camera on this device.");
@@ -68,7 +68,7 @@
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.delegate = self;
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    self.imagePicker.allowsEditing = NO;
+    self.imagePicker.allowsEditing = YES;
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
@@ -78,7 +78,7 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *selected = [self resizeImage:info[UIImagePickerControllerOriginalImage] toWidth:320.0 andHeight:480.0];
+    UIImage *selected = [self resizeImage:info[UIImagePickerControllerOriginalImage] toWidth:400.0 andHeight:323.0];
     self.selectedImage = selected;
 
     if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
