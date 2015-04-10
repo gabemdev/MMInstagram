@@ -448,11 +448,11 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x90-tc-AdE">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" showsCancelButton="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x90-tc-AdE">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="yJ3-SA-COV" id="fAF-Jk-xlC"/>
                                 </connections>
@@ -972,11 +972,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GdQ-87-uyT">
-                                <rect key="frame" x="220" y="20" width="160" height="155"/>
+                                <rect key="frame" x="220" y="20" width="160" height="160"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="FjE-Gu-HJJ"/>
-                                    <constraint firstAttribute="height" constant="155" id="tf8-8j-Bfd"/>
+                                    <constraint firstAttribute="height" constant="160" id="tf8-8j-Bfd"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Qna-k0-MfB" appends="YES" id="afK-yK-Ao2"/>
@@ -1027,7 +1027,7 @@
                             <constraint firstItem="GdQ-87-uyT" firstAttribute="top" secondItem="5bB-Lt-eKh" secondAttribute="bottom" constant="20" id="Ct0-M6-8I1"/>
                             <constraint firstAttribute="centerX" secondItem="uzR-fP-jH4" secondAttribute="centerX" id="IZE-76-P0O"/>
                             <constraint firstAttribute="centerX" secondItem="GdQ-87-uyT" secondAttribute="centerX" id="PCD-Nm-seP"/>
-                            <constraint firstItem="uzR-fP-jH4" firstAttribute="top" secondItem="GdQ-87-uyT" secondAttribute="bottom" constant="40" id="RK1-Zh-Hdk"/>
+                            <constraint firstItem="uzR-fP-jH4" firstAttribute="top" secondItem="GdQ-87-uyT" secondAttribute="bottom" constant="35" id="RK1-Zh-Hdk"/>
                             <constraint firstAttribute="centerX" secondItem="dIm-wm-dMw" secondAttribute="centerX" id="YIq-uy-nfb"/>
                             <constraint firstAttribute="centerX" secondItem="XJm-DG-ysY" secondAttribute="centerX" id="msI-Lb-dKl"/>
                             <constraint firstItem="ehw-Hg-X47" firstAttribute="top" secondItem="uzR-fP-jH4" secondAttribute="bottom" constant="1" id="p9r-tf-S6d"/>
