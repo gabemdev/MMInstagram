@@ -8,6 +8,8 @@
 
 #import "MMDefines.h"
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#define MMINSTAGRAM_CLIENT_ID @""
+#define MMINSTAGTAM_CLIENT_SECRET @""
 
 
 NSString *const kMMAutomaticallyRefresh = @"kMMAutomaticallyRefresh";
@@ -17,5 +19,5 @@ NSString *const MM_PARSE_APPLICATION_ID = @"WhWkp1LjHkrYocIjHETRJMgN86UZZi5tXFq7
 NSString *const MM_PARSE_CLIENT_KEY = @"RSv2jVFZlkvsQxihfRpKzaz28978htWZYhSxcFAL";
 
 #pragma mark - Instagram
-NSString *const MM_INSTAGRAM_CLIENT_ID = @"782b79d39fa34899b783a9440159c22b";
-NSString *const MM_INSTAGRAM_CLIENT_SECRET = @"89798df7cdde4360a3485332cd24831a";
+NSString *const MM_INSTAGRAM_CLIENT_ID = MMINSTAGRAM_CLIENT_ID;
+NSString *const MM_INSTAGRAM_CLIENT_SECRET = MMINSTAGTAM_CLIENT_SECRET;
