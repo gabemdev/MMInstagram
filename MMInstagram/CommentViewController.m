@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *commentTableView;
 @property (nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIImageView *selectedImageView;
 
 @end
 
@@ -25,50 +26,77 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-//    PFObject *photo = self.photo;
-//    PFFile *file = [photo objectForKey:@"imageFile"];
-
-    //self.commentImage.image = self.photo; //image passed from main VC
     self.commentArray = [NSMutableArray new];
-    NSLog(@"Comment Page");
 
-    [self checkUser];
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor colorWithRed:0.92 green:0.38 blue:0.38 alpha:1.00];
-    self.refreshControl.tintColor = [UIColor whiteColor];
-    [self.commentTableView addSubview:self.refreshControl];
-    //[self.refreshControl addTarget:self action:@selector(retrieveComments) forControlEvents:UIControlEventValueChanged];
+    [self getImage];
+    [self loadCommentsByPhoto];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
-    //[self retrieveComments];
 }
 
+- (void)getImage {
+    PFFile *file = [self.photo objectForKey:@"imageFile"];
+    [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            self.selectedImageView.image = [UIImage imageWithData:data];
+        }
+    }];
+}
 
-//adds to the array
-- (IBAction)onAddCommentButtonTapped:(UIButton *)sender {
+- (IBAction)onAddCommentButtonTapped:(id)sender
+{
+    if (![self.commentTextField.text isEqual:@""])
+    {
+        Comment *comment = [Comment object];
+        comment.comment = self.commentTextField.text;
+        comment.photo = self.photo;
+        comment.user = [PFUser currentUser];
+        [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self loadCommentsByPhoto];
+        }];
+        self.commentTextField.text = @"";
+    }
+    //    [self resignFirstResponder];
+}
 
-    if ([self.commentTextField.text length] > 0) {
-        [self.commentArray addObject:self.commentTextField.text];
-        [self.commentTableView reloadData];
-        self.commentTextField.text = nil;
-        [self.commentTextField resignFirstResponder];
-        NSLog(@"%@", self.commentArray);
-    } else{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter Text" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+- (void)loadCommentsByPhoto {
 
-        //alertView.tag = indexPath.row;
-        [alertView show];
+    PFUser *user = [PFUser currentUser];
+    if (user) {
+        PFQuery *query = [Comment query];
+        [query includeKey:@"user"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            for (Comment *comments in objects) {
+                [self.commentArray addObject:comments];
+            }
+            [self.commentTableView reloadData];
+
+        }];
+    }
+}
+
+- (void)getComments {
+    PFUser *user = [PFUser currentUser];
+    if (user) {
+        PFQuery *query = [Comment query];
+        [query includeKey:@"user"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            for (Comment *comments in objects) {
+                [self.commentArray addObject:comments];
+            }
+            [self.commentTableView reloadData];
+        }];
     }
 }
 
 - (void)checkUser {
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
-        NSLog(@"Current user: %@", currentUser[@"name"]);
 
     } else {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
@@ -83,8 +111,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
 
-    cell.textLabel.text = [self.commentArray objectAtIndex:indexPath.row];
-    //cell.imageView.image = //user picture
+    Comment *comment = self.commentArray[indexPath.row];
+    cell.textLabel.text = comment.comment;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"By: %@", comment.user[@"name"]];
     return cell;
 }
 

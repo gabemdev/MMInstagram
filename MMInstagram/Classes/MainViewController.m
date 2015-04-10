@@ -116,13 +116,18 @@
 }
 
 #pragma mark - Actions
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showLogin"]) {
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     }    else if ([segue.identifier isEqualToString:@"showComments"]){
 
+        UIButton *selected = sender;
         CommentViewController *cvc = segue.destinationViewController;
-        cvc.photo = self.photos[sender.tag];
+        cvc.image = self.photos[selected.tag];
+
+        UITableViewCell *cell = sender;
+        cvc.photo = [self.photos objectAtIndex:[self.tableView indexPathForCell:cell].row];
+        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     }
 }
 

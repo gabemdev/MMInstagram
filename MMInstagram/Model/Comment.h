@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Photo.h"
 @interface Comment : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *comment;
 @property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) Photo *photo;
 
 
 + (NSString *)parseClassName;

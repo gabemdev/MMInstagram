@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *followingLabel;
 @property (nonatomic) UIImage *selectedImage;
 @property NSString *userName;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
 
 @property NSMutableArray *photos;
 
@@ -34,6 +35,8 @@
     layout.itemSize = CGSizeMake(106.0, 106.0);
     layout.minimumInteritemSpacing = 1.0;
     layout.minimumLineSpacing = 1.0;
+
+    self.editButton.layer.cornerRadius = 3;
     [self getProfile];
     [self loadPhotos];
 }
@@ -53,8 +56,8 @@
                 self.profileImageView.image = [UIImage imageWithData:data];
                 self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
                 self.profileImageView.layer.masksToBounds = YES;
-                self.profileImageView.layer.borderColor = [UIColor colorWithRed:0.59 green:0.60 blue:0.62 alpha:1.00].CGColor;
-                self.profileImageView.layer.borderWidth = 4;
+                self.profileImageView.layer.borderColor = [UIColor colorWithRed:0.92 green:0.38 blue:0.38 alpha:1.00].CGColor;
+                self.profileImageView.layer.borderWidth = 3;
             }
         }];
     }
@@ -108,12 +111,14 @@
 ////        vc.photo = [self.photos objectAtIndex:[self.collectionView indexPathForCell:cell].row];
 //    }
     if ([segue.identifier isEqualToString:@"editProfile"]) {
+        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
 
     } else if ([segue.identifier isEqualToString:@"showImageDetail"]) {
     SearchCollectionViewCell *cell = sender;
     ProfilePhotoDetailViewController *vc = segue.destinationViewController;
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
     vc.photo = self.photos[indexPath.row];
+    [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     }
 
 }

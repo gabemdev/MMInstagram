@@ -34,25 +34,25 @@
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectPic:)];
     [singleTap setNumberOfTapsRequired:1];
     singleTap.delegate = self;
-    [self.view addGestureRecognizer:singleTap];
+    [self.profileImageView addGestureRecognizer:singleTap];
 }
 
-//
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField
-//{
-//    [self saveData];
-//    return YES;
-//}
-//
-//
 
 - (void)loadFields {
     PFUser *current = [PFUser currentUser];
+    if (current) {
         self.nameTextField.text = current[@"name"];
         self.usernameTextField.text = current[@"username"];
-//        PFFile *imageData = [current objectForKey:@"profileImage"];
-//        [imageData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-//        self.profileImageView.image = [UIImage imageWithData:data];
+        PFFile *imageData = [current objectForKey:@"profileImage"];
+        [imageData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (error) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            } else {
+                self.profileImageView.image = [UIImage imageWithData:data];
+            }
+        }];
+
+    }
 }
 
 

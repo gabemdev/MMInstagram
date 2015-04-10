@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *selectedImageView;
 @property PFFile *photoFile;
+@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 
 @end
 
@@ -26,6 +27,7 @@
     [super viewDidLoad];
     self.selectedImageView.image = self.image;
     self.commentTextField.delegate = self;
+    self.uploadButton.layer.cornerRadius = 3;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -33,6 +35,13 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        self.tabBarController.selectedIndex = 0;
+    }
+    [super viewWillDisappear:animated];
 }
 
 - (IBAction)saveImage:(UIButton *)sender {

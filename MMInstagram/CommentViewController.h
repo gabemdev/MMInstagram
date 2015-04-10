@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Photo.h"
 
 @interface CommentViewController : UIViewController
 
-@property UIImage *photo;
+@property UIImage *image;
 @property PFObject *userImage;
 @property PFObject *username;
+@property Photo *photo;
 
 @end

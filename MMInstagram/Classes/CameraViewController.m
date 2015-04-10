@@ -26,7 +26,18 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self activateCamera];
 
+}
+
+#pragma mark - Actions
+- (IBAction)onUploadPhotoButtonTapped:(id)sender {
+    [self resetImagePicker];
+}
+
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)activateCamera {
     if (!self.imagePickerLoaded) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *takePhotoAction = [UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -45,10 +56,7 @@
 
         [self.tabBarController presentViewController:alertController animated:YES completion:nil];
     }
-
 }
-
-#pragma mark - UIImagePickerControllerDelegate
 
 - (void)promptForCamera {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -105,6 +113,7 @@
         PostViewController *postPhotoVC = segue.destinationViewController;
         postPhotoVC.image = self.selectedImage;
         postPhotoVC.imagePicker = self.imagePicker;
+        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     }
 }
 
@@ -113,6 +122,7 @@
     [self resetImagePicker];
     self.tabBarController.selectedIndex = 0;
 }
+
 
 -(UIImage*)resizeImage:(UIImage *)image toWidth:(float)width andHeight:(float)height {
     CGSize newSize = CGSizeMake(width, height);
