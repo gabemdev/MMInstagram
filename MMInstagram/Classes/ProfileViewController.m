@@ -107,10 +107,14 @@
 ////        vc.selected = [self.photos objectAtIndex:[self.collectionView indexPathForCell:cell].row];
 ////        vc.photo = [self.photos objectAtIndex:[self.collectionView indexPathForCell:cell].row];
 //    }
+    if ([segue.identifier isEqualToString:@"editProfile"]) {
+
+    } else if ([segue.identifier isEqualToString:@"showImageDetail"]) {
     SearchCollectionViewCell *cell = sender;
     ProfilePhotoDetailViewController *vc = segue.destinationViewController;
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
     vc.photo = self.photos[indexPath.row];
+    }
 
 }
 @end
