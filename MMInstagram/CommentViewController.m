@@ -29,7 +29,7 @@
     self.commentArray = [NSMutableArray new];
 
     [self getImage];
-    [self loadCommentsByPhoto];
+    [self loadComments];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -41,7 +41,10 @@
     PFFile *file = [self.photo objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error.localizedDescription);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             self.selectedImageView.image = [UIImage imageWithData:data];
         }
@@ -57,15 +60,13 @@
         comment.photo = self.photo;
         comment.user = [PFUser currentUser];
         [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self loadCommentsByPhoto];
+            [self loadComments];
         }];
         self.commentTextField.text = @"";
     }
-    //    [self resignFirstResponder];
 }
 
-- (void)loadCommentsByPhoto {
-
+- (void)loadComments {
     PFUser *user = [PFUser currentUser];
     if (user) {
         PFQuery *query = [Comment query];
@@ -75,7 +76,6 @@
                 [self.commentArray addObject:comments];
             }
             [self.commentTableView reloadData];
-
         }];
     }
 }
@@ -97,7 +97,6 @@
 - (void)checkUser {
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
-
     } else {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }

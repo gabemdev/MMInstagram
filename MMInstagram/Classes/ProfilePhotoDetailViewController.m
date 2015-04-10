@@ -30,14 +30,15 @@
     PFFile *file = [self.photo objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error.localizedDescription);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             self.selectedImageView.image = [UIImage imageWithData:data];
         }
     }];
 }
-
-
 
 #pragma mark - Actions
 - (IBAction)onEmailButtonTapped:(id)sender {
@@ -59,7 +60,6 @@
 }
 
 - (IBAction)selectPic:(UITapGestureRecognizer *)sender {
-
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *delete = [UIAlertAction actionWithTitle:@"Delete Photo" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         Photo *selected = self.photo;

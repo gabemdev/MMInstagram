@@ -50,7 +50,10 @@
     PFFile *file = [photo objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error.localizedDescription);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             cell.detailImageView.image = [UIImage imageWithData:data];
         }
@@ -82,7 +85,10 @@
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             for (Photo *photo in objects) {
                 [posts addObject:photo];
@@ -105,11 +111,10 @@
     }];
 }
 
-#pragma mark - Helper Methods
 - (void)checkUser {
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
-        NSLog(@"Current user: %@", currentUser[@"name"]);
+
     } else {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }
@@ -146,14 +151,15 @@
     if (self.likes.count == 0) {
         PFObject *photo = self.photos[section];
         NSString *activityId = [photo objectForKey:@"PhotoActivityId"];
-        //created a new class: Like
         PFObject *like = [PFObject objectWithClassName:@"Like"];
-
         [like setValue:[PFUser currentUser].objectId forKey:@"LikingUserId"];
         [like setValue:activityId forKey:@"ActivityId"];
         [like saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error) {
-                NSLog(@"Error: %@", error.localizedDescription);
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                [alert addAction:cancelAction];
+                [self presentViewController:alert animated:YES completion:nil];
             } else {
                 [self.likes addObject:like];
                 [self.tableView reloadData];

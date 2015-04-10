@@ -10,4 +10,5 @@
 
 @interface EditProfileViewController : UIViewController
 
+@property PFUser *user;
 @end

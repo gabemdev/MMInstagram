@@ -30,12 +30,6 @@
 
 }
 
-#pragma mark - Actions
-- (IBAction)onUploadPhotoButtonTapped:(id)sender {
-    [self resetImagePicker];
-}
-
-
 #pragma mark - UIImagePickerControllerDelegate
 - (void)activateCamera {
     if (!self.imagePickerLoaded) {
@@ -67,7 +61,10 @@
         self.imagePicker.allowsEditing = YES;
         [self presentViewController:self.imagePicker animated:YES completion:nil];
     } else {
-        NSLog(@"There is no camera on this device.");
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There is no camera in this device!" preferredStyle:UIAlertControllerStyleAlert];;
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -92,7 +89,6 @@
     if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
         UIImageWriteToSavedPhotosAlbum(self.selectedImage, nil, nil, nil);
     }
-
     [self dismissViewControllerAnimated:YES completion:nil];
     [self performSegueWithIdentifier:@"photoReview" sender:self];
 }
@@ -106,10 +102,8 @@
 
 #pragma mark - Segue Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"photoReview"])
-    {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"photoReview"]) {
         PostViewController *postPhotoVC = segue.destinationViewController;
         postPhotoVC.image = self.selectedImage;
         postPhotoVC.imagePicker = self.imagePicker;
@@ -117,13 +111,13 @@
     }
 }
 
-- (IBAction)unwindFromPostPhotoVC:(UIStoryboardSegue *)segue
-{
+- (IBAction)unwindFromPostPhotoVC:(UIStoryboardSegue *)segue {
     [self resetImagePicker];
     self.tabBarController.selectedIndex = 0;
 }
 
 
+#pragma mark - Accessor methods
 -(UIImage*)resizeImage:(UIImage *)image toWidth:(float)width andHeight:(float)height {
     CGSize newSize = CGSizeMake(width, height);
     CGRect newRect = CGRectMake(0, 0, width, height);

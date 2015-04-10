@@ -31,7 +31,7 @@
 }
 
 
-#pragma mark - TextField
+#pragma mark - TextField Delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.currentResponder = textField;
 }

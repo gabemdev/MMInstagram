@@ -78,9 +78,6 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        [self displayPickedMedia:info];
-//    }];
     if ([info[UIImagePickerControllerMediaType]isEqualToString:(NSString *)kUTTypeImage]) {
         UIImage *image = [self scaleAndRotateImage: [info objectForKey:UIImagePickerControllerEditedImage]];
         self.image = image;
@@ -101,7 +98,6 @@
 
     CGFloat width = CGImageGetWidth(imgRef);
     CGFloat height = CGImageGetHeight(imgRef);
-
 
     CGAffineTransform transform = CGAffineTransformIdentity;
     CGRect bounds = CGRectMake(0, 0, width, height);
@@ -238,8 +234,6 @@
 
 #pragma mark - Accessor Methods
 - (void)uploadImage:(NSData *)imageData {
-
-
     PFFile *imageFIle = [PFFile fileWithName:@"profile.jpg" data:imageData];
 
     [imageFIle saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -254,7 +248,10 @@
         [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
             } else {
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                [alert addAction:cancelAction];
+                [self presentViewController:alert animated:YES completion:nil];
             }
         }];
     }];
@@ -291,18 +288,6 @@
     self.profileImageView.layer.borderWidth = 4;
 }
 
-- (void)updateProfilePic {
-    NSData *fileData;
-    NSString *fileName;
-    NSString *fileType;
-
-    UIImage *new = self.image;
-    fileData = UIImagePNGRepresentation(new);
-    fileName = @"image.png";
-    fileType = @"image";
-    [self.profileImageView setImage:new];
-}
-
 
 #pragma mark - Actions
 - (IBAction)onSignUpButtonPressed:(id)sender {
@@ -332,7 +317,10 @@
 
             [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (error) {
-                    NSLog(@"Error: %@", error.localizedDescription);
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                    [alert addAction:cancelAction];
+                    [self presentViewController:alert animated:YES completion:nil];
                 } else {
                     self.profileImageView.image = [UIImage imageWithData:data];
                 }
@@ -363,7 +351,7 @@
 }
 
 - (IBAction)onDismissButtonPressed:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

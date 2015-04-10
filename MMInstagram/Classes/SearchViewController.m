@@ -54,7 +54,10 @@
     PFFile *file = [photo objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error.localizedDescription);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             cell.imageView.image = [UIImage imageWithData:data];
         }
@@ -76,7 +79,10 @@
     PFFile *file = [user objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error.localizedDescription);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width/2;
             cell.imageView.image = [UIImage imageWithData:data];
@@ -106,7 +112,10 @@
     [query orderByDescending:@"cretedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error.localizedDescription);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             self.users = objects;
             [self.tableView reloadData];
@@ -127,21 +136,9 @@
 }
 
 
-#pragma mark - SearchBar
-//
-//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-//{
-//    NSLog(@"searchBarShouldBeginEditing");
-//    return YES;
-//}
-//
-//- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-//    
-//}
-
+#pragma mark - SearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-
     if (self.segmentControl.selectedSegmentIndex == 0) {
 
         PFQuery *searchQuery = [PFUser query];
@@ -150,7 +147,10 @@
         [searchQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             
             if (error) {
-                NSLog(@"Error: %@", error.localizedDescription);
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                [alert addAction:cancelAction];
+                [self presentViewController:alert animated:YES completion:nil];
             } else {
                 self.photos = objects;
                 [self.collectionView reloadData];
@@ -164,7 +164,10 @@
         [searchQuery orderByDescending:@"createdAt"];
         [searchQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (error) {
-                NSLog(@"Error: %@", error.localizedDescription);
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                [alert addAction:cancelAction];
+                [self presentViewController:alert animated:YES completion:nil];
             } else {
                 self.users = objects;
                 [self.tableView reloadData];

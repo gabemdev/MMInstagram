@@ -9,6 +9,7 @@
 #import "ProfileViewController.h"
 #import "SearchCollectionViewCell.h"
 #import "ProfilePhotoDetailViewController.h"
+#import "EditProfileViewController.h"
 #import "Photo.h"
 
 @interface ProfileViewController ()<UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
@@ -51,7 +52,10 @@
         PFFile *imageData = [current objectForKey:@"profileImage"];
         [imageData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (error) {
-                NSLog(@"Error: %@", error.localizedDescription);
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                [alert addAction:cancelAction];
+                [self presentViewController:alert animated:YES completion:nil];
             } else {
                 self.profileImageView.image = [UIImage imageWithData:data];
                 self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
@@ -88,7 +92,10 @@
     PFFile *file = [photo objectForKey:@"imageFile"];
     [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error.localizedDescription);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];;
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             cell.imageView.image = [UIImage imageWithData:data];
         }
@@ -103,14 +110,10 @@
 
 #pragma mark - Actions
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"photoViewSegue"])
-//    {
-////        UICollectionViewCell *cell = sender;
-////        ProfilePhotoDetailViewController *vc = segue.destinationViewController;
-////        vc.selected = [self.photos objectAtIndex:[self.collectionView indexPathForCell:cell].row];
-////        vc.photo = [self.photos objectAtIndex:[self.collectionView indexPathForCell:cell].row];
-//    }
     if ([segue.identifier isEqualToString:@"editProfile"]) {
+        PFUser *selected = [PFUser currentUser];
+        EditProfileViewController *vc = segue.destinationViewController;
+        vc.user = selected;
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
 
     } else if ([segue.identifier isEqualToString:@"showImageDetail"]) {
