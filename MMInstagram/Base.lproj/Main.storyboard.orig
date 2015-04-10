@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
+=======
+<<<<<<< HEAD
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vF2-P6-iip">
+>>>>>>> 09565e770cc6f7c3ffe66b19e1d292ec83fa8ab9
+>>>>>>> master
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -483,7 +491,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+<<<<<<< HEAD
+                                    <outlet property="delegate" destination="yJ3-SA-COV" id="OPh-wr-aLk"/>
+=======
                                     <outlet property="delegate" destination="yJ3-SA-COV" id="fAF-Jk-xlC"/>
+>>>>>>> master
                                 </connections>
                             </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Uhk-t5-owq">
@@ -680,7 +692,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCh-xu-vqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
+            <point key="canvasLocation" x="718" y="2005"/>
+=======
             <point key="canvasLocation" x="692" y="2119"/>
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
         </scene>
         <!--CommentViewController-->
         <scene sceneID="dr2-EK-lJx">
@@ -698,8 +714,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="304"/>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
+<<<<<<< HEAD
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KpN-2P-pdG">
+                                <rect key="frame" x="16" y="312" width="404" height="30"/>
+=======
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KpN-2P-pdG">
                                 <rect key="frame" x="16" y="312" width="85" height="30"/>
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
                                 <constraints>
                                     <constraint firstAttribute="width" constant="152" id="Phb-WO-FNT"/>
                                     <constraint firstAttribute="height" constant="30" id="UNd-UP-fzE"/>
@@ -737,8 +758,14 @@
                                     <outlet property="delegate" destination="qo6-Ob-qdK" id="HcI-Mw-kHI"/>
                                 </connections>
                             </tableView>
+<<<<<<< HEAD
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ac-nJ-R8l">
+                                <rect key="frame" x="449" y="312" width="135" height="22"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+=======
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ac-nJ-R8l">
                                 <rect key="frame" x="224" y="312" width="360" height="30"/>
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="G25-T0-kIA"/>
                                     <constraint firstAttribute="height" constant="30" id="TcC-cd-TRA"/>
@@ -777,8 +804,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zu1-Hs-eOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-
+<<<<<<< HEAD
+            <point key="canvasLocation" x="-88" y="2759"/>
+=======
             <point key="canvasLocation" x="-343" y="2879"/>
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
         </scene>
         <!--View Controller-->
         <scene sceneID="4E6-nN-GjJ">
@@ -796,7 +826,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCE-Gf-CYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
+            <point key="canvasLocation" x="1088" y="3167"/>
+=======
             <point key="canvasLocation" x="1808" y="3167"/>
+>>>>>>> 2b5d826900eca59816ff10ce5f3fdc2ccbb974b9
         </scene>
         <!--Camera-->
         <scene sceneID="q9a-ZD-JBQ">
