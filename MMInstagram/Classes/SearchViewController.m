@@ -140,7 +140,7 @@
     if (self.segmentControl.selectedSegmentIndex == 0) {
 
         PFQuery *searchQuery = [PFUser query];
-        [searchQuery whereKey:@"PhotoDescription" containsString:searchText];
+        [searchQuery whereKey:@"objectId" containsString:searchText];
         [searchQuery orderByDescending:@"createdAt"];
         [searchQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (error) {
