@@ -156,7 +156,6 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.profileImageView.image = pickedImage;
                     [self.view layoutIfNeeded];
-
                 });
             });
         }

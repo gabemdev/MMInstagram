@@ -77,20 +77,21 @@
 
     UIEdgeInsets insets = UIEdgeInsetsMake(7.0f, 0.0f, -7.0f, 0.0f);
 
-    feed.selectedImage = [UIImage imageNamed:@"tabbar-home-icon-highlighted"];
-    feed.image = [UIImage imageNamed:@"tabbar-home-icon"];
+    feed.selectedImage = [[UIImage imageNamed:@"tabbar-home-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    feed.image = [[UIImage imageNamed:@"tabbar-home-icon-highlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     feed.imageInsets = insets;
+    
 
-    search.selectedImage = [UIImage imageNamed:@"tabbar-search-icon-highlighted"];
-    search.image = [UIImage imageNamed:@"tabbar-search-icon"];
+    search.selectedImage = [[UIImage imageNamed:@"tabbar-search-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    search.image = [[UIImage imageNamed:@"tabbar-search-icon-highlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     search.imageInsets = insets;
 
-    camera.selectedImage = [UIImage imageNamed:@"more-addtofancy-camera-active"];
-    camera.image = [UIImage imageNamed:@"more-addtofancy-camera"];
+    camera.selectedImage = [[UIImage imageNamed:@"tabbar-activity-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    camera.image = [[UIImage imageNamed:@"tabbar-activity-icon-highlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     camera.imageInsets = insets;
 
-    profile.selectedImage = [UIImage imageNamed:@"tabbar-profile-icon-highlighted"];
-    profile.image = [UIImage imageNamed:@"tabbar-profile-icon"];
+    profile.selectedImage = [[UIImage imageNamed:@"tabbar-profile-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    profile.image = [[UIImage imageNamed:@"tabbar-profile-icon-highlighted"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     profile.imageInsets = insets;
 }
 
