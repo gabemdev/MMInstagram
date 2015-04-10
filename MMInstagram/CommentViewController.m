@@ -9,6 +9,7 @@
 #import "CommentViewController.h"
 #import "Comment.h"
 #import "MainViewController.h"
+#import "Photo.h"
 
 @interface CommentViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *commentImage;
@@ -25,17 +26,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+//    PFObject *photo = self.photo;
+//    PFFile *file = [photo objectForKey:@"imageFile"];
+
+    //self.commentImage.image = self.photo; //image passed from main VC
+    self.commentArray = [NSMutableArray new];
+    NSLog(@"Comment Page");
+
     [self checkUser];
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor colorWithRed:0.92 green:0.38 blue:0.38 alpha:1.00];
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.commentTableView addSubview:self.refreshControl];
-    [self.refreshControl addTarget:self action:@selector(retrieveComments) forControlEvents:UIControlEventValueChanged];
+    //[self.refreshControl addTarget:self action:@selector(retrieveComments) forControlEvents:UIControlEventValueChanged];
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
-    [self retrieveComments];
+    //[self retrieveComments];
 }
 
 
@@ -47,30 +56,13 @@
         [self.commentTableView reloadData];
         self.commentTextField.text = nil;
         [self.commentTextField resignFirstResponder];
+        NSLog(@"%@", self.commentArray);
     } else{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Nothing entered" message:@"Cancel" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter Text" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
 
         //alertView.tag = indexPath.row;
         [alertView show];
     }
-}
-
-//retrives comment already in pfArray
-- (void)retrieveComments {
-    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
-    [query orderByDescending:@"time"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        } else {
-   //         self.anotherCommentArray = objects;
-            [self.commentTableView reloadData];
-
-        }
-        if ([self.refreshControl isRefreshing]) {
-            [self.refreshControl endRefreshing];
-        }
-    }];
 }
 
 - (void)checkUser {
@@ -83,6 +75,7 @@
     }
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section    {
     return self.commentArray.count;
 }
@@ -91,7 +84,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
 
     cell.textLabel.text = [self.commentArray objectAtIndex:indexPath.row];
-
+    //cell.imageView.image = //user picture
     return cell;
 }
 

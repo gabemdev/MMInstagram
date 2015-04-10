@@ -116,23 +116,13 @@
 }
 
 #pragma mark - Actions
-- (IBAction)onCommentButtonTapped:(UIButton *)sender{
-    [self performSegueWithIdentifier:@"showComments" sender:self];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
     if ([segue.identifier isEqualToString:@"showLogin"]) {
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
-    } else if ([segue.identifier isEqualToString:@"showComment"]) {
-//        Photo *photoCOmment = [self.photos objectAtIndex:[self.tableView indexPathForCell:cell].row];
-//        Comments *vc = segue.destinationViewController;
+    }    else if ([segue.identifier isEqualToString:@"showComments"]){
 
-    }
-
-    else if ([segue.identifier isEqualToString:@"showComments"]){
         CommentViewController *cvc = segue.destinationViewController;
-
-        //cvc.photo = self.photos[sender.tag];
+        cvc.photo = self.photos[sender.tag];
     }
 }
 
@@ -143,7 +133,7 @@
 }
 
 - (IBAction)tapComments:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"showComment" sender:self];
+    [self performSegueWithIdentifier:@"showComments" sender:self];
 }
 
 - (IBAction)likeButtonTapped:(id)sender {
