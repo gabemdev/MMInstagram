@@ -16,11 +16,9 @@
 @property (nonatomic, strong) NSArray *likes;
 @property (nonatomic, strong) NSArray *comments;
 @property (nonatomic, strong) NSData *imageData;
-
-+ (instancetype)createPostWIthPhoto:(UIImage *)image;
+@property (nonatomic, strong) NSNumber *likeCount;
 
 + (NSString *)parseClassName;
 
-- (UIImage *)convertToImage;
 
 @end

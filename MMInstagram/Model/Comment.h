@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSString *comment;
 @property (nonatomic, strong) PFUser *user;
 @property (nonatomic, strong) Photo *photo;
+@property (nonatomic, strong) NSString *objectId;
 
 
 + (NSString *)parseClassName;

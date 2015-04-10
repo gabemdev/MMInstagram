@@ -17,21 +17,7 @@
 @dynamic likes;
 @dynamic comments;
 @dynamic imageData;
-
-+ (instancetype)createPostWIthPhoto:(UIImage *)image {
-    Photo *photo = [Photo object];
-    if (photo) {
-        NSData *photoData = UIImagePNGRepresentation(image);
-        photo.imageFile = [PFFile fileWithData:photoData];
-        photo.user = [PFUser currentUser];
-        [photo saveInBackground];
-    }
-    return photo;
-}
-
-- (UIImage *)convertToImage {
-    return [UIImage imageWithData:[self.imageFile getData]];
-}
+@dynamic likeCount;
 
 + (void)load {
     [self registerSubclass];

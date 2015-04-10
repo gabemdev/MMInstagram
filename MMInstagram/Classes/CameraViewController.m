@@ -83,7 +83,7 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *selected = [self resizeImage:info[UIImagePickerControllerOriginalImage] toWidth:400.0 andHeight:323.0];
+    UIImage *selected = [self resizeImage:info[UIImagePickerControllerOriginalImage] toWidth:800.0 andHeight:646.0];
     self.selectedImage = selected;
 
     if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
@@ -127,6 +127,12 @@
     UIGraphicsEndImageContext();
 
     return resizedImage;
+}
+
+#pragma mark - Actions
+- (IBAction)onCameraButtonPressed:(id)sender {
+    [self resetImagePicker];
+    [self activateCamera];
 }
 
 @end

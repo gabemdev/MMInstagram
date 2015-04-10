@@ -79,7 +79,11 @@
                 }];
             }];
         }
-        self.tabBarController.selectedIndex = 0;
+        if (succeeded) {
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//            self.tabBarController.selectedIndex = 0;
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
     }];
 
 }

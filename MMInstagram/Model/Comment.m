@@ -11,7 +11,8 @@
 @implementation Comment
 @dynamic  comment;
 @dynamic user;
-@synthesize photo;
+@dynamic photo;
+@dynamic objectId;
 
 + (void)load {
     [self registerSubclass];

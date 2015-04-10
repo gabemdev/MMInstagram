@@ -71,8 +71,9 @@
     self.photos = [NSMutableArray new];
     PFUser *user = [PFUser currentUser];
     if (user) {
-        PFQuery *query = [Photo query];
+        PFQuery *query = [PFQuery queryWithClassName:@"Photo"];
         [query includeKey:@"user"];
+        [query whereKey:@"user" equalTo:user];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             for (Photo *photo in objects) {
                 [self.photos addObject:photo];

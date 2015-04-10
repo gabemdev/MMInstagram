@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *commentTableView;
 @property (nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIImageView *selectedImageView;
+@property (weak, nonatomic) IBOutlet UIButton *addCommentButton;
 
 @end
 
@@ -27,9 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.commentArray = [NSMutableArray new];
+    self.addCommentButton.layer.cornerRadius = 3;
 
     [self getImage];
-    [self loadComments];
+    [self loadComments:self.photo];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,19 +60,21 @@
         Comment *comment = [Comment object];
         comment.comment = self.commentTextField.text;
         comment.photo = self.photo;
+        comment.objectId = [[PFUser currentUser][@"profile"] objectId];
         comment.user = [PFUser currentUser];
         [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self loadComments];
+            [self loadComments:self.photo];
         }];
         self.commentTextField.text = @"";
     }
 }
 
-- (void)loadComments {
+- (void)loadComments:(Photo *)photo {
     PFUser *user = [PFUser currentUser];
     if (user) {
         PFQuery *query = [Comment query];
-        [query includeKey:@"user"];
+        [query whereKey:@"photo" equalTo:photo];
+        [query orderByAscending:@"createdAt"];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             for (Comment *comments in objects) {
                 [self.commentArray addObject:comments];

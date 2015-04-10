@@ -28,7 +28,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bgm-v1-8KI" id="WAK-rT-aV3">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eF5-H4-QxZ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eF5-H4-QxZ">
                                                     <rect key="frame" x="0.0" y="2" width="600" height="323"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iE3-qC-mJG">
@@ -618,6 +618,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ac-nJ-R8l">
                                 <rect key="frame" x="456" y="258" width="128" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="Lfd-B7-BYs"/>
                                 </constraints>
@@ -646,6 +647,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addCommentButton" destination="9Ac-nJ-R8l" id="0mm-FR-hwn"/>
                         <outlet property="commentImage" destination="zm7-i5-NzL" id="509-rz-9dn"/>
                         <outlet property="commentTableView" destination="br4-5x-wrZ" id="t7f-6h-nej"/>
                         <outlet property="commentTextField" destination="KpN-2P-pdG" id="fV5-PS-Jqx"/>
@@ -654,7 +656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zu1-Hs-eOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-96" y="2055"/>
+            <point key="canvasLocation" x="-96" y="2145"/>
         </scene>
         <!--Camera-->
         <scene sceneID="q9a-ZD-JBQ">
@@ -668,14 +670,83 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="loginLogo" translatesAutoresizingMaskIntoConstraints="NO" id="lFw-z5-TL2">
-                                <rect key="frame" x="236" y="180" width="128" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psd-bz-csH">
+                                <rect key="frame" x="258" y="275" width="85" height="85"/>
+                                <state key="normal" image="signup_camera">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCameraButtonPressed:" destination="N1m-dJ-ozn" eventType="touchUpInside" id="2Cd-qi-C5A"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Come on, share a photo!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94q-nl-5PG">
+                                <rect key="frame" x="171" y="194" width="258" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="82p-8x-koI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="23"/>
+                                <color key="textColor" red="0.86666666670000003" green="0.7843137255" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="82p-8x-koI"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="82p-8x-koI"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELLO." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAr-pQ-4eD">
+                                <rect key="frame" x="189" y="127" width="223" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="mZs-z9-d99"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="62"/>
+                                <color key="textColor" red="0.86666666670000003" green="0.7843137255" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="mZs-z9-d99"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="mZs-z9-d99"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="tab-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="aSL-a5-LgP">
+                                <rect key="frame" x="283" y="227" width="34" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="IZg-Sp-gF2"/>
+                                    <constraint firstAttribute="width" constant="34" id="oDP-Uy-a27"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="oDP-Uy-a27"/>
+                                        <exclude reference="IZg-Sp-gF2"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="oDP-Uy-a27"/>
+                                        <include reference="IZg-Sp-gF2"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.87843137250000003" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="lFw-z5-TL2" secondAttribute="centerY" id="Lkz-C8-TJi"/>
-                            <constraint firstAttribute="centerX" secondItem="lFw-z5-TL2" secondAttribute="centerX" id="ebQ-fg-eJZ"/>
+                            <constraint firstAttribute="centerX" secondItem="RAr-pQ-4eD" secondAttribute="centerX" id="5mQ-ak-q3S"/>
+                            <constraint firstItem="Psd-bz-csH" firstAttribute="top" secondItem="aSL-a5-LgP" secondAttribute="bottom" constant="8" id="BeY-TX-FSb"/>
+                            <constraint firstAttribute="centerY" secondItem="Psd-bz-csH" secondAttribute="centerY" constant="-74" id="HGD-p7-iFz"/>
+                            <constraint firstItem="aSL-a5-LgP" firstAttribute="top" secondItem="94q-nl-5PG" secondAttribute="bottom" constant="2" id="KIR-uk-cHv"/>
+                            <constraint firstAttribute="centerX" secondItem="Psd-bz-csH" secondAttribute="centerX" id="X7p-bB-JyE"/>
+                            <constraint firstAttribute="centerX" secondItem="94q-nl-5PG" secondAttribute="centerX" id="bDF-gk-bd6"/>
+                            <constraint firstAttribute="centerX" secondItem="aSL-a5-LgP" secondAttribute="centerX" id="gnM-jo-AfJ"/>
+                            <constraint firstItem="94q-nl-5PG" firstAttribute="top" secondItem="RAr-pQ-4eD" secondAttribute="bottom" constant="8" id="sWx-8q-vpo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Camera" id="7ng-Ns-VDD"/>
@@ -699,7 +770,7 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Q2-cd-DQk">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Q2-cd-DQk">
                                 <rect key="frame" x="0.0" y="8" width="600" height="340"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ja9-CP-Fpc">
@@ -716,6 +787,7 @@
                                 </state>
                                 <connections>
                                     <action selector="saveImage:" destination="mg3-tc-mid" eventType="touchUpInside" id="lgu-02-Hmc"/>
+                                    <segue destination="Hrz-TA-z6h" kind="unwind" unwindAction="unwindFromPostPhotoVC:" id="jDf-pu-wHO"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Add a Caption" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvP-Mi-qZo">
@@ -749,6 +821,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7pB-hq-sMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Hrz-TA-z6h" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1440" y="1995"/>
         </scene>
@@ -1186,6 +1259,7 @@
         <image name="share" width="16" height="18"/>
         <image name="signinSeparator" width="272" height="1"/>
         <image name="signup_camera" width="85" height="85"/>
+        <image name="tab-arrow" width="34" height="40"/>
         <image name="tabbar-activity-icon-highlighted" width="26" height="24"/>
         <image name="tabbar-home-icon-highlighted" width="29" height="24"/>
         <image name="tabbar-profile-icon-highlighted" width="21" height="23"/>
