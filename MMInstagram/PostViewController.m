@@ -7,10 +7,11 @@
 //
 
 #import "PostViewController.h"
-#import <Parse/Parse.h>
+@import Parse;
 #import "Photo.h"
 #import "User.h"
 #import "Comment.h"
+@import QuartzCore;
 
 @interface PostViewController ()<UITextFieldDelegate>
 
@@ -27,7 +28,11 @@
     [super viewDidLoad];
     self.selectedImageView.image = self.image;
     self.commentTextField.delegate = self;
-    self.uploadButton.layer.cornerRadius = 3;
+    self.commentTextField.layer.cornerRadius = 3;
+    self.commentTextField.layer.borderColor = [UIColor colorWithRed:0.92 green:0.38 blue:0.38 alpha:1.00].CGColor;
+    self.commentTextField.layer.borderWidth = 1;
+    self.commentTextField.layer.masksToBounds = YES;
+//    self.uploadButton.layer.cornerRadius = 3;
 }
 
 

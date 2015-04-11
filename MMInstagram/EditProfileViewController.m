@@ -11,7 +11,7 @@
 #import "Photo.h"
 #import "SignUpViewController.h"
 #import "ProfileViewController.h"
-#import <MobileCoreServices/UTCoreTypes.h>
+@import MobileCoreServices.UTCoreTypes;
 
 @interface EditProfileViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate>
 

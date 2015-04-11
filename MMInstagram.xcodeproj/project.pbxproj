@@ -46,7 +46,6 @@
 		6DCCD54E1AD43D9D0062834B /* MMDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD54D1AD43D9D0062834B /* MMDefines.m */; };
 		6DCCD5511AD4AC090062834B /* SearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5501AD4AC090062834B /* SearchCollectionViewCell.m */; };
 		6DCCD5541AD4C7070062834B /* PhotoDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5531AD4C7070062834B /* PhotoDetailTableViewCell.m */; };
-		6DCCD5571AD4C7AB0062834B /* PhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCCD5561AD4C7AB0062834B /* PhotoDetailViewController.m */; };
 		FF9A20CE1AD4886200130FFD /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9A20CD1AD4886200130FFD /* PostViewController.m */; };
 		FF9A20D41AD4A53E00130FFD /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9A20D31AD4A53E00130FFD /* EditProfileViewController.m */; };
 /* End PBXBuildFile section */
@@ -124,8 +123,6 @@
 		6DCCD5501AD4AC090062834B /* SearchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchCollectionViewCell.m; path = Custom/SearchCollectionViewCell.m; sourceTree = "<group>"; };
 		6DCCD5521AD4C7070062834B /* PhotoDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoDetailTableViewCell.h; path = Custom/PhotoDetailTableViewCell.h; sourceTree = "<group>"; };
 		6DCCD5531AD4C7070062834B /* PhotoDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoDetailTableViewCell.m; path = Custom/PhotoDetailTableViewCell.m; sourceTree = "<group>"; };
-		6DCCD5551AD4C7AB0062834B /* PhotoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoDetailViewController.h; path = Classes/PhotoDetailViewController.h; sourceTree = "<group>"; };
-		6DCCD5561AD4C7AB0062834B /* PhotoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoDetailViewController.m; path = Classes/PhotoDetailViewController.m; sourceTree = "<group>"; };
 		FF9A20CC1AD4886200130FFD /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		FF9A20CD1AD4886200130FFD /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		FF9A20D21AD4A53E00130FFD /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
@@ -253,8 +250,6 @@
 				FF9A20D31AD4A53E00130FFD /* EditProfileViewController.m */,
 				26D8E1311AD5A732003166FB /* CommentViewController.h */,
 				26D8E1321AD5A732003166FB /* CommentViewController.m */,
-				6DCCD5551AD4C7AB0062834B /* PhotoDetailViewController.h */,
-				6DCCD5561AD4C7AB0062834B /* PhotoDetailViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -436,7 +431,6 @@
 				6DCCD5041AD398730062834B /* User.m in Sources */,
 				6DCCD5511AD4AC090062834B /* SearchCollectionViewCell.m in Sources */,
 				6DCCD5541AD4C7070062834B /* PhotoDetailTableViewCell.m in Sources */,
-				6DCCD5571AD4C7AB0062834B /* PhotoDetailViewController.m in Sources */,
 				6DCCD5071AD3989E0062834B /* Comment.m in Sources */,
 				FF9A20CE1AD4886200130FFD /* PostViewController.m in Sources */,
 				6DCCD5161AD3B92C0062834B /* ProfileViewController.m in Sources */,
@@ -587,6 +581,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+				);
 			};
 			name = Debug;
 		};
@@ -607,6 +605,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+				);
 			};
 			name = Release;
 		};

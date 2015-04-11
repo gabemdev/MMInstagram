@@ -680,7 +680,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Come on, share a photo!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94q-nl-5PG">
-                                <rect key="frame" x="171" y="194" width="258" height="31"/>
+                                <rect key="frame" x="171" y="193" width="258" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="82p-8x-koI"/>
                                 </constraints>
@@ -699,7 +699,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELLO." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAr-pQ-4eD">
-                                <rect key="frame" x="189" y="127" width="223" height="59"/>
+                                <rect key="frame" x="189" y="100" width="223" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="mZs-z9-d99"/>
                                 </constraints>
@@ -725,14 +725,14 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="oDP-Uy-a27"/>
                                         <exclude reference="IZg-Sp-gF2"/>
+                                        <exclude reference="oDP-Uy-a27"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="oDP-Uy-a27"/>
                                         <include reference="IZg-Sp-gF2"/>
+                                        <include reference="oDP-Uy-a27"/>
                                     </mask>
                                 </variation>
                             </imageView>
@@ -785,6 +785,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="saveImage:" destination="mg3-tc-mid" eventType="touchUpInside" id="lgu-02-Hmc"/>
                                     <segue destination="Hrz-TA-z6h" kind="unwind" unwindAction="unwindFromPostPhotoVC:" id="jDf-pu-wHO"/>
@@ -797,6 +802,15 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="0.83529411764705885" green="0.27843137254901962" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

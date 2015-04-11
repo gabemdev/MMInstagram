@@ -7,14 +7,10 @@
 //
 
 #import "SignUpViewController.h"
-#import <MobileCoreServices/UTCoreTypes.h>
+@import MobileCoreServices.UTCoreTypes;
 #import "MainViewController.h"
-#import <QuartzCore/QuartzCore.h>
+@import QuartzCore.QuartzCore;
 
-#define PHOTO_LIBRART_BUTTON_TITLE @"Photo Library"
-#define PHOTO_ALBUM_BUTTON_TITLE @"Camera Roll"
-#define CAMERA_BUTTON_TITLE @"Camera"
-#define CANCEL_BUTTON_TITLE @"Cancel"
 
 @interface SignUpViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic) UIImagePickerController *imagePicker;

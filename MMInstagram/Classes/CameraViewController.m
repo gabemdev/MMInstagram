@@ -7,7 +7,7 @@
 //
 
 #import "CameraViewController.h"
-#import <CoreGraphics/CoreGraphics.h>
+@import CoreGraphics;
 #import "PostViewController.h"
 
 @interface CameraViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>

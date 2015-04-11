@@ -141,7 +141,7 @@
 }
 
 - (IBAction)likeButtonTapped:(id)sender {
-    NSInteger section;
+    NSInteger section = 0;
     if (self.likes.count == 0) {
         PFObject *photo = self.photos[section];
         NSString *activityId = [photo objectForKey:@"PhotoActivityId"];

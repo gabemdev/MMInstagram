@@ -7,12 +7,8 @@
 //
 
 #import "MMDefines.h"
-#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 #define MMINSTAGRAM_CLIENT_ID @""
 #define MMINSTAGTAM_CLIENT_SECRET @""
-
-
-NSString *const kMMAutomaticallyRefresh = @"kMMAutomaticallyRefresh";
 
 #pragma mark - Parse
 NSString *const MM_PARSE_APPLICATION_ID = @"WhWkp1LjHkrYocIjHETRJMgN86UZZi5tXFq7gy17";

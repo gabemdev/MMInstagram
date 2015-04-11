@@ -17,7 +17,7 @@
 @implementation MMCropView
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+    if ((self = [super initWithFrame:frame])) {
         self.userInteractionEnabled = NO;
 
         NSArray *lines = [self.horizontalLines arrayByAddingObjectsFromArray:self.verticalLines];
